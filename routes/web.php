@@ -16,6 +16,7 @@ Route::get('/', function () {
 
 });
 
+Route::get('/login','HomeController@index');
 Route::get('/home','HomeController@index');
 Route::get('/form','FormController@index');
 Route::post('/get_data','FormController@get_data');
@@ -26,6 +27,14 @@ Route::get('/merchant','MerchantController@registrction');
 Route::post('/merchant/store','MerchantController@store');
 Route::get('/fileupload/view','MerchantController@fileupload');
 Route::post('/fileupload/store','MerchantController@fileupload_store');
+
+//categories
+Route::get('/Categories/add','CategoriesController@add');
+Route::post('/Categories/store','CategoriesController@store');
+
+//sub Categories Route
+Route::post('/SubCategoriesController/add','SubCategoriesController@add');
+Route::post('/SubCategoriesController/store','SubCategoriesController@store');
 
 
 //Route::get('/apis',function(){
