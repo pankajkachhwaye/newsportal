@@ -44,8 +44,69 @@
                 <li>
                     <a href="{{url('/merchant')}}">
                         <i class="material-icons">text_fields</i>
-                        <span>Merchant Registration</span>
+                        <span>client Registration</span>
                     </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">widgets</i>
+                        <span>Categories</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{url('/Categories/add')}}">
+                                <span>Add</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{url('/Categories/show')}}">
+                                <span>Show</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">widgets</i>
+                        <span>SubCategories</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{url('/SubCategories/add')}}">
+                                <span>Add</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{url('/SubCategories')}}">
+                                <span>Show</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">widgets</i>
+                        <span>News</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{{url('/Deals/create')}}">
+                                <span>Add</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{url('/Deals')}}">
+                                <span>Show</span>
+                            </a>
+
+                        </li>
+                    </ul>
                 </li>
 
                 <li>
@@ -56,7 +117,7 @@
                 </li>
 
                 <li>
-                    <a href="pages/helper-classes.html">
+                    <a href="{{url('/fileupload/view')}}">
                         <i class="material-icons">layers</i>
                         <span>Helper Classes</span>
                     </a>
@@ -106,6 +167,7 @@
                                     <a href="pages/widgets/infobox/infobox-5.html">Infobox-5</a>
                                 </li>
                             </ul>
+                        </li>
                         </li>
                     </ul>
                 </li>

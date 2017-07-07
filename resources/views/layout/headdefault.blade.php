@@ -13,6 +13,10 @@
     <!-- Bootstrap Core Css -->
     <link href="{{URL::asset('public/plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
 
+    {{--select css--}}
+    <link href="{{URL::asset('public/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
+
     <!-- Waves Effect Css -->
     <link href="{{URL::asset('public/plugins/node-waves/waves.css')}}" rel="stylesheet" />
 

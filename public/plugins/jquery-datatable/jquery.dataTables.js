@@ -12650,10 +12650,10 @@
 		/**
 		 * This parameter is only used in DataTables' server-side processing. It can
 		 * be exceptionally useful to know what columns are being displayed on the
-		 * client side, and to map these to database fields. When defined, the names
+		 * Client side, and to map these to database fields. When defined, the names
 		 * also allow DataTables to reorder information from the server if it comes
 		 * back in an unexpected order (i.e. if you switch your columns around on the
-		 * client-side, your server-side code does not also need updating).
+		 * Client-side, your server-side code does not also need updating).
 		 *  @type string
 		 *  @default <i>Empty string</i>
 		 *

@@ -29,12 +29,46 @@ Route::get('/fileupload/view','MerchantController@fileupload');
 Route::post('/fileupload/store','MerchantController@fileupload_store');
 
 //categories
-Route::get('/Categories/add','CategoriesController@add');
-Route::post('/Categories/store','CategoriesController@store');
+
+Route::group(['prefix'=> 'Categories', 'namespace'=>'Admin'], function(){
+Route::get('/add','CategoriesController@add');
+Route::post('store','CategoriesController@store');
+Route::get('show','CategoriesController@show');
+Route::get('edit/{id}','CategoriesController@edit');
+Route::post('editstore','CategoriesController@editstore');
+});
 
 //sub Categories Route
-Route::post('/SubCategoriesController/add','SubCategoriesController@add');
-Route::post('/SubCategoriesController/store','SubCategoriesController@store');
+
+Route::group(['prefix'=>'SubCategories', 'namespace'=>'Admin'],function(){
+Route::get('/add','SubCategoriesController@add');
+Route::post('/store','SubCategoriesController@store');
+Route::get('/','SubCategoriesController@index');
+Route::get('/edit/{id}','SubCategoriesController@edit');
+Route::get('/delete/{id}','SubCategoriesController@delete');
+
+});
+
+
+//Deals
+
+Route::group(['prefix'=>'Deals', 'namespace'=>'Admin'], function (){
+
+    Route::get('/','DealController@index');
+    Route::get('/create','DealController@create');
+    Route::post('/store','DealController@store');
+    Route::post('/edit/{id}','DealController@edit');
+    Route::post('/update','DealController@update');
+    Route::post('/destroy/{id}','DealController@destroy');
+    Route::get('/getSubcatData/{id}','DealController@getSubcatData');
+
+
+
+
+
+});
+
+
 
 
 //Route::get('/apis',function(){

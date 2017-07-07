@@ -16057,7 +16057,7 @@ define("tinymce/caret/CaretCandidate", [
  */
 
 /**
- * Utility functions for working with client rects.
+ * Utility functions for working with Client rects.
  *
  * @private
  * @class tinymce.geom.ClientRect
@@ -16374,7 +16374,7 @@ define("tinymce/caret/CaretPosition", [
 					return clientRects;
 				}
 
-				// WebKit returns two client rects for a position after an extending
+				// WebKit returns two Client rects for a position after an extending
 				// character a\uxxx|b so expand on "b" and collapse to start of "b" box
 				if (ExtendingChar.isExtendingChar(container.data[offset - 1])) {
 					range.setStart(container, offset);
@@ -16454,7 +16454,7 @@ define("tinymce/caret/CaretPosition", [
 	 * @constructor
 	 * @param {Node} container Container node.
 	 * @param {Number} offset Offset within that container node.
-	 * @param {Array} clientRects Optional client rects array for the position.
+	 * @param {Array} clientRects Optional Client rects array for the position.
 	 */
 	function CaretPosition(container, offset, clientRects) {
 		function isAtStart() {
@@ -16529,11 +16529,11 @@ define("tinymce/caret/CaretPosition", [
 			toRange: toRange,
 
 			/**
-			 * Returns the client rects for the caret position. Might be multiple rects between
+			 * Returns the Client rects for the caret position. Might be multiple rects between
 			 * block elements.
 			 *
 			 * @method getClientRects
-			 * @return {Array} Array of client rects.
+			 * @return {Array} Array of Client rects.
 			 */
 			getClientRects: getClientRects,
 
@@ -29347,8 +29347,8 @@ define("tinymce/ui/Scrollable", [
 						$(scrollBarElm).css('display', 'block');
 						containerElm = self.getEl('body');
 						scrollThumbElm = self.getEl('scroll' + axisName + "t");
-						containerSize = containerElm["client" + sizeName] - (margin * 2);
-						containerSize -= hasScrollH && hasScrollV ? scrollBarElm["client" + ax] : 0;
+						containerSize = containerElm["Client" + sizeName] - (margin * 2);
+						containerSize -= hasScrollH && hasScrollV ? scrollBarElm["Client" + ax] : 0;
 						scrollSize = containerElm["scroll" + sizeName];
 						ratio = containerSize / scrollSize;
 
@@ -29393,8 +29393,8 @@ define("tinymce/ui/Scrollable", [
 
 							hasScrollH = layoutRect.contentW > layoutRect.innerW;
 							hasScrollV = layoutRect.contentH > layoutRect.innerH;
-							containerSize = self.getEl('body')["client" + sizeName] - (margin * 2);
-							containerSize -= hasScrollH && hasScrollV ? self.getEl('scroll' + axisName)["client" + ax] : 0;
+							containerSize = self.getEl('body')["Client" + sizeName] - (margin * 2);
+							containerSize -= hasScrollH && hasScrollV ? self.getEl('scroll' + axisName)["Client" + ax] : 0;
 
 							ratio = containerSize / self.getEl('body')["scroll" + sizeName];
 							self.getEl('body')["scroll" + posName] = scrollStart + (e["delta" + deltaPosName] / ratio);
@@ -35233,7 +35233,7 @@ define("tinymce/caret/FakeCaret", [
  */
 
 /**
- * This module measures nodes and returns client rects. The client rects has an
+ * This module measures nodes and returns Client rects. The Client rects has an
  * extra node property.
  *
  * @private
@@ -35277,11 +35277,11 @@ define("tinymce/dom/Dimensions", [
 
 	return {
 		/**
-		 * Returns the client rects for a specific node.
+		 * Returns the Client rects for a specific node.
 		 *
 		 * @method getClientRects
-		 * @param {Array/DOMNode} node Node or array of nodes to get client rects on.
-		 * @param {Array} Array of client rects with a extra node property.
+		 * @param {Array/DOMNode} node Node or array of nodes to get Client rects on.
+		 * @param {Array} Array of Client rects with a extra node property.
 		 */
 		getClientRects: getClientRects
 	};
@@ -35301,7 +35301,7 @@ define("tinymce/dom/Dimensions", [
 
 /**
  * This module lets you walk the document line by line
- * returing nodes and client rects for each line.
+ * returing nodes and Client rects for each line.
  *
  * @private
  * @class tinymce.caret.LineWalker
@@ -35440,14 +35440,14 @@ define("tinymce/caret/LineWalker", [
 		downUntil: downUntil,
 
 		/**
-		 * Find client rects with line and caret position until the predicate returns true.
+		 * Find Client rects with line and caret position until the predicate returns true.
 		 *
 		 * @method positionsUntil
 		 * @param {Number} direction Direction forward/backward 1/-1.
 		 * @param {DOMNode} rootNode Root node to walk within.
-		 * @param {function} predicateFn Gets the client rect as it's input.
+		 * @param {function} predicateFn Gets the Client rect as it's input.
 		 * @param {DOMNode} node Node to start walking from.
-		 * @return {Array} Array of client rects with line and position properties.
+		 * @return {Array} Array of Client rects with line and position properties.
 		 */
 		positionsUntil: positionsUntil,
 

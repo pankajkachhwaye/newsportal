@@ -13,6 +13,9 @@
 <!-- Waves Effect Plugin Js -->
 <script src="{{URL::asset('public/plugins/node-waves/waves.js')}}"></script>
 
+<script src="{{URL::asset('public/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
+
+
 <!-- Jquery CountTo Plugin Js -->
 <script src="{{URL::asset('public/plugins/jquery-countto/jquery.countTo.js')}}"></script>
 
@@ -24,11 +27,7 @@
 <script src="{{URL::asset('public/plugins/chartjs/Chart.bundle.js')}}"></script>
 
 <!-- Flot Charts Plugin Js -->
-<script src="{{URL::asset('public/plugins/flot-charts/jquery.flot.js')}}"></script>
-<script src="{{URL::asset('public/plugins/flot-charts/jquery.flot.resize.js')}}"></script>
-<script src="{{URL::asset('public/plugins/flot-charts/jquery.flot.pie.js')}}"></script>
-<script src="{{URL::asset('public/plugins/flot-charts/jquery.flot.categories.js')}}"></script>
-<script src="{{URL::asset('public/plugins/flot-charts/jquery.flot.time.js')}}"></script>
+
 
 <!-- Sparkline Chart Plugin Js -->
 <script src="{{URL::asset('public/plugins/jquery-sparkline/jquery.sparkline.js')}}"></script>
@@ -39,3 +38,5 @@
 
 <!-- Demo Js -->
 <script src="{{URL::asset('public/js/demo.js')}}"></script>
+<script src="{{ URL::asset('public/plugins/bootstrap-notify/bootstrap-notify.js')  }}"></script>
+<script src="{{URL::asset('public/js/script.js')}}"></script>

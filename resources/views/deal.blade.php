@@ -28,11 +28,23 @@
                                         <label  for="email_address_2">Categories Name</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <select name="cat_id" class="form-control">
+                                        <select id ="categories" name="cat_id" class="form-control">
                                             <option value="">--Select Categories--</option>
                                             @foreach($data as $cat)
-                                            <option value={{$cat['id']}}>{{ $cat['categories_name']}}</option>
-                                             @endforeach
+                                                <option value={{$cat['id']}}>{{ $cat['categories_name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-sm-2 form-control-label">
+                                        <label  for="email_address_2">Sub Categories Name</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <select id ="categories" name="cat_id" class="form-control">
+                                            <option class="subcategories" value="">--Select Categories--</option>
+
                                         </select>
                                     </div>
                                 </div>

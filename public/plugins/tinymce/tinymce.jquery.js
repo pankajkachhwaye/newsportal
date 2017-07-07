@@ -16530,11 +16530,11 @@ define("tinymce/caret/CaretPosition", [
 			toRange: toRange,
 
 			/**
-			 * Returns the client rects for the caret position. Might be multiple rects between
+			 * Returns the Client rects for the caret position. Might be multiple rects between
 			 * block elements.
 			 *
 			 * @method getClientRects
-			 * @return {Array} Array of client rects.
+			 * @return {Array} Array of Client rects.
 			 */
 			getClientRects: getClientRects,
 
@@ -35234,7 +35234,7 @@ define("tinymce/caret/FakeCaret", [
  */
 
 /**
- * This module measures nodes and returns client rects. The client rects has an
+ * This module measures nodes and returns Client rects. The Client rects has an
  * extra node property.
  *
  * @private
@@ -35278,11 +35278,11 @@ define("tinymce/dom/Dimensions", [
 
 	return {
 		/**
-		 * Returns the client rects for a specific node.
+		 * Returns the Client rects for a specific node.
 		 *
 		 * @method getClientRects
-		 * @param {Array/DOMNode} node Node or array of nodes to get client rects on.
-		 * @param {Array} Array of client rects with a extra node property.
+		 * @param {Array/DOMNode} node Node or array of nodes to get Client rects on.
+		 * @param {Array} Array of Client rects with a extra node property.
 		 */
 		getClientRects: getClientRects
 	};
@@ -35441,14 +35441,14 @@ define("tinymce/caret/LineWalker", [
 		downUntil: downUntil,
 
 		/**
-		 * Find client rects with line and caret position until the predicate returns true.
+		 * Find Client rects with line and caret position until the predicate returns true.
 		 *
 		 * @method positionsUntil
 		 * @param {Number} direction Direction forward/backward 1/-1.
 		 * @param {DOMNode} rootNode Root node to walk within.
-		 * @param {function} predicateFn Gets the client rect as it's input.
+		 * @param {function} predicateFn Gets the Client rect as it's input.
 		 * @param {DOMNode} node Node to start walking from.
-		 * @return {Array} Array of client rects with line and position properties.
+		 * @return {Array} Array of Client rects with line and position properties.
 		 */
 		positionsUntil: positionsUntil,
 
