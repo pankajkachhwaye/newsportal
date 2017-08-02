@@ -45,7 +45,8 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <div> <img src={{ Storage::url($data[0]['categories_image']) }} alt="Categories_Image" height="100px" width="100px"></div>
+
+                                                <div> <img src={{asset('storage/'.$data[0]['categories_image']) }} alt="Categories_Image" height="100px" width="100px"></div>
                                             </div>
                                         </div>
                                     </div>

@@ -57,9 +57,9 @@ Route::group(['prefix'=>'Deals', 'namespace'=>'Admin'], function (){
     Route::get('/','DealController@index');
     Route::get('/create','DealController@create');
     Route::post('/store','DealController@store');
-    Route::post('/edit/{id}','DealController@edit');
+    Route::get('/edit/{id}','DealController@edit');
     Route::post('/update','DealController@update');
-    Route::post('/destroy/{id}','DealController@destroy');
+    Route::get('/destroy/{id}','DealController@destroy');
     Route::get('/getSubcatData/{id}','DealController@getSubcatData');
 
 

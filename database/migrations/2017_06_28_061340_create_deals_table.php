@@ -17,29 +17,21 @@ class CreateDealsTable extends Migration
             $table->increments('id');
             $table->integer('cat_id')->unsigned();
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('subcat_id')->unsigned();
-            $table->foreign('subcat_id')->references('id')->on('sub_categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('merchant_id')->unsigned();
-            $table->foreign('merchant_id')->references('id')->on('merchents')->onDelete('cascade')->onUpdate('cascade');
-
-            $table->string('dealtitle');
-            $table->string('dealpercent');
-            $table->string('dealdescription');
-
-            $table->string('dealstart');
-            $table->string('dealend');
-            $table->boolean('status');
-
-
-            $table->string('dealimg1');
-            $table->string('dealimg2');
-            $table->string('dealimg3');
-            $table->string('dealimg4');
-            $table->string('dealimg5');
+            $table->string('news_title');
+            $table->string('language');
+            $table->text('news_description');
+            $table->string('city');
+            $table->string('ref_url');
+            $table->string('country');
+            $table->string('news_image');
+            $table->string('news_video_url');
 
             $table->timestamps();
+
         });
     }
+
+
 
     /**
      * Reverse the migrations.

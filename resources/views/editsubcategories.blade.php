@@ -32,7 +32,7 @@ Categories
                                 <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" value={{ $data[0]['categories_name'] }} name="categories_name" id="companyName" class="form-control" placeholder="Enter your Company Name">
+                                            <input type="text" value={{ $data[0]['subcategories_name'] }} name="categories_name" id="companyName" class="form-control" placeholder="Enter your Company Name">
                                         </div>
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@ Categories
                                 <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <div> <img src={{ Storage::url($data[0]['categories_image']) }} alt="Categories_Image" height="100px" width="100px"></div>
+                                            <div> <img src={{ asset('storage/'.$data[0]['subcategories_image']) }} alt="Categories_Image" height="100px" width="100px"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@ Categories
                                 </div>
                             </div>
 
-                            <input type="text" name="id" value=value={{ $data[0]['categories_name'] }} hidden>
+                            <input type="text" name="id" value=value={{ $data[0]['subcategories_name'] }} hidden>
 
                             <div class="row clearfix">
                                 <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">

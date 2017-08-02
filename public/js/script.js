@@ -21,6 +21,7 @@
 
     $('#categories').change(function(){
         var id=$(this).val();
+        $('.subcategories').empty();
 
         $.ajax({
             type: "GET",
@@ -34,7 +35,7 @@
                 $.each(data,function (index,value) {
                     console.log(value.id);
                     console.log(value.subcategories_name);
-                    $('.subcategories').after("<option value="+value.id+">"+ value.subcategories_name+" </option>");
+                    $('.subcategories').append("<option value="+value.id+">"+ value.subcategories_name+" </option>");
 
                 });
             }

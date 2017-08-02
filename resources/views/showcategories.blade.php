@@ -50,10 +50,10 @@
                                     <tr>
                                         <td>{{ $categories['id'] }}</td>
                                         <td>{{ $categories['categories_name'] }}</td>
-                                        <td><img src={{ Storage::url($categories['categories_image']) }} alt="Categories_Image" height="100px" width="100px"> </td>
-                                        <td><a href="{{url('Categories/edit').'/'.$categories['id']}}"> <button type="submit"
-                                                                                                                      class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
-                                        <td>Delete</td>
+                                        <td><img src={{asset('storage/'.$categories['categories_image']) }} alt="Categories_Image" height="100px" width="100px"> </td>
+                                        <td><a href="{{url('Categories/edit').'/'.$categories['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
+                                        <td><a href="{{url('Categories/delete').'/'.$categories['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
+
                                     </tr>
 
 

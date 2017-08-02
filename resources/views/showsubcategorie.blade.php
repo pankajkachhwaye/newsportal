@@ -40,13 +40,12 @@
                                     <tr>
                                         <td>{{ $subcategories['id'] }}</td>
                                         <td>{{ $subcategories['cat_id'] }}</td>
-                                        <td>{{ $subcategories['subcategories_name'] }}</td>
-                                        <td><img src={{ Storage::url($subcategories['subcategories_image']) }} alt="Categories_Image" height="100px" width="100px"> </td>
-                                        <td><a href="{{url('SubCategories/edit').'/'.$subcategories['id']}}"> <button type="submit"
-                                                                                                                class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
 
-                                        <td><a href="{{url('SubCategories/delete').'/'.$subcategories['id']}}"> <button type="submit"
-                                                                                                                   class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
+                                        <td>{{ $subcategories['subcategories_name'] }}</td>
+                                        <td><img src={{  asset('storage/'.$subcategories['subcategories_image']) }} alt="Categories_Image" height="100px" width="100px"> </td>
+                                        <td><a href="{{url('SubCategories/edit').'/'.$subcategories['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
+
+                                        <td><a href="{{url('SubCategories/delete').'/'.$subcategories['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
                                     </tr>
 
 
@@ -69,4 +68,5 @@
 
 
 @endsection
+
 

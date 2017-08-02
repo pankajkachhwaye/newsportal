@@ -19,7 +19,20 @@ class CreateProductsTable extends Migration
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('subcat_id')->unsigned();
             $table->foreign('subcat_id')->references('id')->on('sub_categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('product_name');
+            $table->string('news_title');
+            $table->string('news_description');
+            $table->string('video');
+            $table->string('Priority');
+            $table->string('city');
+            $table->string('image');
+            $table->string('country');
+
+
+
+            $table->string('source_of_url');
+
+
+
             $table->timestamps();
         });
     }

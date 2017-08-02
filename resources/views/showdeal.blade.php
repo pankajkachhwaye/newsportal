@@ -9,23 +9,22 @@
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                    Categories
-                    <small>Taken from <a href="https://datatables.net/" target="_blank">Categories</a></small>
+                   All News
                 </h2>
             </div>
             <!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                     <div class="card">
                         <div class="header">
                             <h2>
-                                All Categories
+                                All News
                             </h2>
 
                         </div>
                         <div class="body">
-                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                <thead>
+                            <table class="table table-border" >
                                 <tr>
                                     <th>id</th>
                                     <th>Categories ID</th>
@@ -36,23 +35,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $subcategories)
+                                @foreach($data as $news)
                                     <tr>
-                                        <td>{{ $subcategories['id'] }}</td>
-                                        <td>{{ $subcategories['cat_id'] }}</td>
-                                        <td>{{ $subcategories['subcategories_name'] }}</td>
-                                        <td><img src={{ Storage::url($subcategories['subcategories_image']) }} alt="Categories_Image" height="100px" width="100px"> </td>
-                                        <td><a href="{{url('SubCategories/edit').'/'.$subcategories['id']}}"> <button type="submit"
-                                                                                                                      class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
-
-                                        <td><a href="{{url('SubCategories/delete').'/'.$subcategories['id']}}"> <button type="submit"
-                                                                                                                        class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
+                                        <td>{{ $news['id'] }}</td>
+                                        <td>{{ $news['cat_id'] }}</td>
+                                        <td>{{ $news['news_title'] }}</td>
+                                        <td><img src={{ asset('storage/'.$news['news_image']) }} alt="Categories_Image" height="100px" width="100px"> </td>
+                                        <td><a href="{{url('Deals/edit').'/'.$news['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
+                                        <td><a href="{{url('Deals/destroy').'/'.$news['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
                                     </tr>
 
+                                @endforeach
 
 
                                 </tbody>
-                                @endforeach
 
 
                             </table>

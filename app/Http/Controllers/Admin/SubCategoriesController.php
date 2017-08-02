@@ -53,7 +53,17 @@ class SubCategoriesController extends Controller
     }
     public function edit($id)
     {
-        echo "in edit : with id :".$id;
+        //echo $id;
+        $categorie=new SubCategories();
+        $data=$categorie->where('id',$id)
+            ->get()->toArray();
+        //dd($data);
+        return view('editsubcategories',compact("data"));
+    }
+
+    public function update(Request $request)
+    {
+
     }
     public function delete($id)
     {

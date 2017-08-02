@@ -28,9 +28,7 @@ class CategoriesController extends Controller
         $path= Storage::putFileAs('categories', $categories_image, time().$categorie->categories_name.".".$ext);('');
         $categorie->categories_image=$path;
         $categorie->save();
-
         return back()->with('returnStatus', true)->with('status', 101)->with('message', 'Category Added successfully');
-      //  return redirect('/Categories/show');
 
 
 
@@ -61,3 +59,4 @@ class CategoriesController extends Controller
 
     }
 }
+

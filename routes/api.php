@@ -17,11 +17,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/form','ApiController@form_data');
-Route::post('/insert','ApiController@insert');
-Route::post('/insert1',function(){
+Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
 
-    dd("hello");
+    Route::get('/','ApiPanelController@index');
+    Route::get('/categories','ApiPanelController@categories');
+    Route::get('/subcategories','ApiPanelController@subcategories');
+    Route::get('/news','ApiPanelController@news');
+
+
 });
 
+Route::group(['namespace'=>'APIs'],function(){
+
+    Route::post('/login','WebServicesController@login');
+    Route::get('/categories','WebServicesController@categories');
+    Route::post('/subcategories','WebServicesController@subcategories');
+    Route::post('/news','WebServicesController@news');
+
+});
 

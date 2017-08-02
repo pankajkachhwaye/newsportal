@@ -5,18 +5,18 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{URL::asset('public/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{URL::asset('favicon.ico')}}" type="image/x-icon">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <!-- Bootstrap Core Css -->
-    <link href="{{URL::asset('public/plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
     <!-- Waves Effect Css -->
-    <link href="{{URL::asset('public/plugins/node-waves/waves.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('plugins/node-waves/waves.css')}}" rel="stylesheet" />
     <!-- Animation Css -->
-    <link href="{{URL::asset('public/plugins/animate-css/animate.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('plugins/animate-css/animate.css')}}" rel="stylesheet" />
     <!-- Custom Css -->
-    <link href="{{URL::asset('public/css/style.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">
 </head>
 <body class="login-page">
 <div class="login-box">
@@ -73,15 +73,15 @@
     </div>
 </div>
 <!-- Jquery Core Js -->
-<script src="{{URL::asset('public/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{URL::asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap Core Js -->
-<script src="{{URL::asset('public/plugins/bootstrap/js/bootstrap.js')}}"></script>
+<script src="{{URL::asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
 <!-- Waves Effect Plugin Js -->
-<script src="{{URL::asset('public/plugins/node-waves/waves.js')}}"></script>
+<script src="{{URL::asset('plugins/node-waves/waves.js')}}"></script>
 <!-- Validation Plugin Js -->
-<script src="{{URL::asset('public/plugins/jquery-validation/jquery.validate.js')}}"></script>
+<script src="{{URL::asset('plugins/jquery-validation/jquery.validate.js')}}"></script>
 <!-- Custom Js -->
-<script src="{{URL::asset('public/js/admin.js')}}"></script>
-<script src="{{URL::asset('public/js/pages/examples/sign-in.js')}}"></script>
+<script src="{{URL::asset('js/admin.js')}}"></script>
+<script src="{{URL::asset('js/pages/examples/sign-in.js')}}"></script>
 </body>
 </html>
