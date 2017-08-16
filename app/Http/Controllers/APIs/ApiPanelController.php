@@ -15,6 +15,14 @@ class ApiPanelController extends Controller
         return view('APIs.allapi');
     }
 
+    public function registerForm(){
+        return view('APIs.registeruser');
+    }
+
+    public function loginForm(){
+        return view('APIs.loginuser');
+    }
+
     public function categories()
 
     {

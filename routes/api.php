@@ -23,12 +23,17 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
     Route::get('/categories','ApiPanelController@categories');
     Route::get('/subcategories','ApiPanelController@subcategories');
     Route::get('/news','ApiPanelController@news');
+    Route::get('/register-user-form','ApiPanelController@registerForm');
+    Route::get('/login-user-form','ApiPanelController@loginForm');
 
 
 });
 
 Route::group(['namespace'=>'APIs'],function(){
 
+
+    Route::post('/register-app-user','UserController@registerAppUser');
+    Route::post('/login-app-user','UserController@loginAppUser');
     Route::post('/login','WebServicesController@login');
     Route::get('/categories','WebServicesController@categories');
     Route::post('/subcategories','WebServicesController@subcategories');

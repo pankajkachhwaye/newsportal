@@ -19,10 +19,12 @@
 <div id="accordion">
     <h3>User</h3>
     <div>
+        <p><a href="{{url('/api/Allapi/register-user-form')}}">Register-user</a></p>
+        <p><a href="{{url('/api/Allapi/login-user-form')}}">Login-user</a></p>
 
-        <p><a href="{{url('/api/Allapi/categories')}}">categories</a></p>
-        <p><a href="{{url('/api/Allapi/subcategories')}}">Subcategories</a></p>
-        <p><a href="{{url('/api/Allapi/news')}}">news</a></p>
+        {{--<p><a href="{{url('/api/Allapi/categories')}}">categories</a></p>--}}
+        {{--<p><a href="{{url('/api/Allapi/subcategories')}}">Subcategories</a></p>--}}
+        {{--<p><a href="{{url('/api/Allapi/news')}}">news</a></p>--}}
 
 
         <p><a href=""></a></p>
