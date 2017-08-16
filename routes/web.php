@@ -30,6 +30,11 @@ Route::post('/fileupload/store','MerchantController@fileupload_store');
 
 //categories
 
+Route::group(['namespace'=>'Admin'], function(){
+    Route::get('/add-language','AdminController@addLanguageForm');
+    Route::post('/post-language','AdminController@postLanguage');
+});
+
 Route::group(['prefix'=> 'Categories', 'namespace'=>'Admin'], function(){
 Route::get('/add','CategoriesController@add');
 Route::post('store','CategoriesController@store');

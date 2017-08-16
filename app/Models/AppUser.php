@@ -8,9 +8,9 @@ class AppUser extends Model
 {
     protected $table = 'app_users';
 
-    protected $fillable = [
-        'full_name', 'email', 'mobile_no'
-    ];
+//    protected $fillable = [
+//        'full_name', 'email', 'mobile_no','password'
+//    ];
 
     protected $hidden = [
         'password', 'remember_token',

@@ -34,6 +34,7 @@ Route::group(['namespace'=>'APIs'],function(){
 
     Route::post('/register-app-user','UserController@registerAppUser');
     Route::post('/login-app-user','UserController@loginAppUser');
+    Route::get('/all-languages','WebServicesController@allLanguages');
     Route::post('/login','WebServicesController@login');
     Route::get('/categories','WebServicesController@categories');
     Route::post('/subcategories','WebServicesController@subcategories');

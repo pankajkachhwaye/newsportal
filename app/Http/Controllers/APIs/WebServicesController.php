@@ -8,6 +8,8 @@ use App\Categories;
 use App\SubCategories;
 use App\deal;
 use Illuminate\Support\Facades\DB;
+use App\Models\Language;
+use Response;
 
 class WebServicesController extends Controller
 {
@@ -88,4 +90,15 @@ class WebServicesController extends Controller
        // $data=$data->toArray();
         echo json_encode($data);
     }
+
+
+    public function allLanguages(){
+        $laguages = Language::all()->toArray();
+        if(count($laguages) > 0)
+            return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found','data' =>$laguages]);
+        else
+            return Response::json(['code' => 500, 'status' => true,'message' => 'Data not Found','data' =>array()]);
+
+    }
+
 }
