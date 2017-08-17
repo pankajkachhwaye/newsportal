@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Categories;
 use App\SubCategories;
-
+use App\Models\Language;
 class ApiPanelController extends Controller
 {
     //
@@ -34,6 +34,11 @@ class ApiPanelController extends Controller
         $data=Categories::all()->toArray();
         return view('APIs.subcategories', compact('data'));
 
+    }
+
+    public function showCategoryForm(){
+        $laguages = Language::all()->toArray();
+        return view('APIs.categoriesform',compact('laguages'));
     }
 
     public function news()

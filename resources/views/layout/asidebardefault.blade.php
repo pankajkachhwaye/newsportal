@@ -48,23 +48,10 @@
                     {{--</a>--}}
                 {{--</li>--}}
                 <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
+                    <a href="{{url('add-language')}}" class="menu-toggle">
                         <i class="material-icons">widgets</i>
                         <span>Languages</span>
                     </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="{{url('add-language')}}">
-                                <span>Add Language</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('show-language')}}">
-                                <span>Show</span>
-                            </a>
-
-                        </li>
-                    </ul>
                 </li>
 
                 <li>

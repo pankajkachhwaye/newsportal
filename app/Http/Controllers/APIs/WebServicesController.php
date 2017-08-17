@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\APIs;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Categories;
@@ -99,6 +100,24 @@ class WebServicesController extends Controller
         else
             return Response::json(['code' => 500, 'status' => true,'message' => 'Data not Found','data' =>array()]);
 
+    }
+
+
+    public function categoryByLanguage(Request $request){
+
+        $temp_categories = Category::GetCategoryByLang($request->language_id)->get();
+        if($temp_categories->count() > 0){
+          $categories =   $temp_categories->toArray();
+          $categoriesArray = [];
+          foreach ($categories as $key_cate => $value_cate){
+              $value_cate['category_icon'] =   asset('storage/'.$value_cate['category_icon']);
+            array_push($categoriesArray,$value_cate);
+          }
+            return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found.','data' =>$categoriesArray]);
+        }
+        else{
+            return Response::json(['code' => 500, 'status' => true,'message' => 'No category found in this language.','data' =>array()]);
+        }
     }
 
 }

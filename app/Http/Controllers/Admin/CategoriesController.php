@@ -6,27 +6,33 @@ use Illuminate\Http\Request;
 use App\Categories;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-
+use App\Models\Language;
+use App\Models\Category;
 
 class CategoriesController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function add()
     {
-        echo "Categories";
-        return view('categories');
+        $laguages = Language::all()->toArray();
+        return view('admin.categories',compact('laguages'));
     }
     public function store(Request $request)
     {
-        $categorie=new Categories();
 
-//           dd($request);
+        $categorie=new Category();
 
-        $categorie->categories_name= $request->categories_name;
-        $categories_image= $request->categories_image;
+        $categorie->category_name= $request->category_name;
+        $categorie->language_id= $request->language_id;
+
+        $categories_image= $request->category_icon;
         $ext = $categories_image->getClientOriginalExtension();
-        $path= Storage::putFileAs('categories', $categories_image, time().$categorie->categories_name.".".$ext);('');
-        $categorie->categories_image=$path;
+        $path= Storage::putFileAs('categories', $categories_image, time().$categorie->category_icon.".".$ext);('');
+        $categorie->category_icon=$path;
         $categorie->save();
         return back()->with('returnStatus', true)->with('status', 101)->with('message', 'Category Added successfully');
 
