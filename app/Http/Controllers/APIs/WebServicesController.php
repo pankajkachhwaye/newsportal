@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Categories;
@@ -38,61 +39,6 @@ class WebServicesController extends Controller
 
     }
 
-    public function news(Request $request)
-    {
-       //dd($request->toArray());
-
-
-         $query = deal::select();
-
-         if($request->categories)
-         {
-             if($request->language!=null) {
-
-
-
-                 $query->whereIn('cat_id', $request->categories)->Where('language', '=', $request->language);
-
-             }
-             else{
-
-                 $query->whereIn('cat_id', $request->categories);
-
-             }
-
-
-         }
-         else
-         {
-             if($request->language!=null) {
-
-
-
-                 $query->Where('language', '=', $request->language);
-
-             }
-
-         }
-
-
-
-
-        $data = $query->get();
-
-        //dd($data->toArray());
-        $i=0;
-        foreach ($data as $v)
-        {
-            $data[$i]['news_image']= asset('storage/'.$v['news_image']);
-            $i++;
-        }
-
-      //  $data= deal::where('cat_id',$request->cat_id )->get();
-       // $data=$data->toArray();
-        echo json_encode($data);
-    }
-
-
     public function allLanguages(){
         $laguages = Language::all()->toArray();
         if(count($laguages) > 0)
@@ -116,8 +62,42 @@ class WebServicesController extends Controller
             return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found.','data' =>$categoriesArray]);
         }
         else{
-            return Response::json(['code' => 500, 'status' => true,'message' => 'No category found in this language.','data' =>array()]);
+            return Response::json(['code' => 500, 'status' => false,'message' => 'No category found in this language.','data' =>array()]);
         }
+    }
+
+    public function getNews(Request $request){
+//        dd($request->all());
+        if($request->top_news == 0 && $request->recommended_news == 0 && $request->cat_id != ''){
+            $temp_news = News::GetNewsByCat($request->cat_id)->get();
+
+        }
+        if($request->top_news != 0 && $request->recommended_news == 0 && $request->cat_id == ''){
+            $temp_news = News::GetNewsByCreatedAt($request->language)->orderBy('created_at' ,'desc')->take(1)->get();
+        }
+        if($request->top_news == 0 && $request->recommended_news != 0 && $request->cat_id == ''){
+            $temp_news = News::GetNewsByLike($request->language)->orderBy('like' ,'desc')->take(1)->get();
+        }
+
+        if($temp_news->count() > 0){
+                $news = [];
+            foreach ($temp_news as $key_news => $value_news){
+                    $x = $value_news->toArray();
+                    $newsimages = $value_news->newsImage()->get()->toArray();
+                     $x['newsImage'] = [];
+                    foreach ($newsimages as $key_img => $value_img){
+                      array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
+                    }
+
+                    array_push($news,$x);
+
+            }
+            return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found.','data' =>$news]);
+        }
+        else{
+            return Response::json(['code' => 500, 'status' => false,'message' => 'No News is found write now.','data' =>array()]);
+        }
+
     }
 
 }

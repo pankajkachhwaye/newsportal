@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\APIs;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Categories;
@@ -44,8 +45,15 @@ class ApiPanelController extends Controller
     public function news()
     {
         $data=Categories::all()->toArray();
+
         return view('APIs.news' ,compact('data'));
 
+    }
+
+    public function showNewsForm(){
+        $categories = Category::all()->toArray();
+        $laguages = Language::all()->toArray();
+        return view('APIs.newsform',compact('categories','laguages'));
     }
 
 

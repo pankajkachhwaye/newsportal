@@ -23,6 +23,7 @@
         <p><a href="{{url('/api/Allapi/login-user-form')}}">Login-user</a></p>
         <p><a href="{{url('/api/all-languages')}}">All Languages</a></p>
         <p><a href="{{url('/api/Allapi/category-form')}}">Categories</a></p>
+        <p><a href="{{url('/api/Allapi/news-form')}}">News</a></p>
 
         {{--<p><a href="{{url('/api/Allapi/categories')}}">categories</a></p>--}}
         {{--<p><a href="{{url('/api/Allapi/subcategories')}}">Subcategories</a></p>--}}

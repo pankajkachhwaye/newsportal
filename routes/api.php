@@ -26,6 +26,7 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
     Route::get('/register-user-form','ApiPanelController@registerForm');
     Route::get('/login-user-form','ApiPanelController@loginForm');
     Route::get('/category-form','ApiPanelController@showCategoryForm');
+    Route::get('/news-form','ApiPanelController@showNewsForm');
 
 
 });
@@ -37,9 +38,11 @@ Route::group(['namespace'=>'APIs'],function(){
     Route::post('/login-app-user','UserController@loginAppUser');
     Route::get('/all-languages','WebServicesController@allLanguages');
     Route::post('/categories-by-language','WebServicesController@categoryByLanguage');
+    Route::post('/news','WebServicesController@getNews');
+
     Route::get('/categories','WebServicesController@categories');
     Route::post('/subcategories','WebServicesController@subcategories');
-    Route::post('/news','WebServicesController@news');
+
 
 });
 

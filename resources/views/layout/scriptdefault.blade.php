@@ -26,6 +26,8 @@
 <!-- ChartJs -->
 <script src="{{URL::asset('plugins/chartjs/Chart.bundle.js')}}"></script>
 
+<script src="{{URL::asset('plugins/jquery-validation/jquery.validate.js')}}"></script>
+
 <!-- Flot Charts Plugin Js -->
 
 

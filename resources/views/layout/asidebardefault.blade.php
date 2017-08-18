@@ -102,7 +102,7 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="{{url('/Deals/create')}}">
+                            <a href="{{url('/add-news')}}">
                                 <span>Add</span>
                             </a>
                         </li>

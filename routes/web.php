@@ -33,6 +33,9 @@ Route::post('/fileupload/store','MerchantController@fileupload_store');
 Route::group(['namespace'=>'Admin'], function(){
     Route::get('/add-language','AdminController@addLanguageForm');
     Route::post('/post-language','AdminController@postLanguage');
+    Route::get('/add-news','AdminController@addNewsForm');
+    Route::get('/category-by-lang/{id}','AdminController@categoryByLang');
+    Route::post('/post-news','AdminController@postNews');
 });
 
 Route::group(['prefix'=> 'Categories', 'namespace'=>'Admin'], function(){
