@@ -47,6 +47,8 @@ class CrudRepository
         unset($data['_token']);
         $language = $data['language'];
         unset($data['language']);
+        $lang_id = $data['lang_id'];
+        unset($data['lang_id']);
         $cat_id = $data['cat_id'];
         unset($data['cat_id']);
         $news_title = $data['news_title'];
@@ -64,6 +66,7 @@ class CrudRepository
         unset($data['counter']);
         $insertArray = [
             'cat_id'=>$cat_id,
+            'lang_id'=>$lang_id,
             'news_title'=>$news_title,
             'language'=>$language,
             'news_description'=>$news_description,

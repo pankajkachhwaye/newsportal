@@ -15,6 +15,8 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('lang_id')->unsigned();
+            $table->foreign('lang_id')->references('id')->on('language')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('cat_id')->unsigned();
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('news_title');

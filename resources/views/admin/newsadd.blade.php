@@ -35,6 +35,7 @@
                                                 <option data-react-id={{$lang['id']}} value={{$lang['language_name']}}>{{ $lang['language_name']}}</option>
                                             @endforeach
                                         </select>
+                                        <input type="hidden" value="" name="lang_id" id="lang_id">
                                     </div>
                                 </div>
 

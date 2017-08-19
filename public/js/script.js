@@ -41,6 +41,7 @@
     };
 
     $('#lang').change(function(){
+        $('#lang_id').val('');
         $('#categories').empty();
         $('#categories').selectpicker('refresh');
         // var id=$(this).val();
@@ -61,12 +62,13 @@
                     $('#categories').append(tempoption);
                  $.each(response.data,function (index,value) {
                      var option = '<option value=' + value.id + '>' + value.category_name + '</option>';
-                        console.log(option);
+
                    var selector = $('#categories');
                      selector.append(option);
 
                     });
                     $('#categories').selectpicker('refresh');
+                    $('#lang_id').val(id);
                 }
 
             });
@@ -120,6 +122,10 @@
         //    }
         return false; // Removes the last section you added
     });
-
+    // Enable the "add" button
+    $('#btnAdd').attr('disabled', false);
+    // Disable the "remove" button
+    $('#btnDel').attr('disabled', true);
+    $('#btnDelEdit').attr('disabled', true);
 
 });

@@ -17,10 +17,10 @@ class News extends Model
     }
 
     public function scopeGetNewsByCreatedAt($query,$language){
-        return $query->where('language',$language);
+        return $query->where('lang_id',$language);
     }
 
     public function scopeGetNewsByLike($query,$language){
-        return $query->where('language',$language);
+        return $query->where('lang_id',$language);
     }
 }

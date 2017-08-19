@@ -14,10 +14,10 @@
 <form  method="post"  action=" {{url('/api/news')}}" >
 
     <br>
-    Language(language) ::    <select required name="language" >
+    Language(language) ::    *<select required name="language" >
         <option value="" >Please Select</option>
         @foreach($laguages as $d)
-            <option value="{{$d['language_name']}}" >{{$d['language_name']}}</option>
+            <option value="{{$d['id']}}" >{{$d['language_name']}}</option>
 
         @endforeach
     </select>
@@ -26,7 +26,7 @@
     <br>
     <br>
 
-    Category(cat_id) ::    <select name="cat_id" >
+    Category(cat_id) ::    *<select name="cat_id" >
         <option value="" >Please Select</option>
         @foreach($categories as $d)
         <option value="{{$d['id']}}" >{{$d['category_name']}}</option>
