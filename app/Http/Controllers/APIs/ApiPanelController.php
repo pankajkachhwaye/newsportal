@@ -56,6 +56,12 @@ class ApiPanelController extends Controller
         return view('APIs.newsform',compact('categories','laguages'));
     }
 
+    public function showRelatedNewsForm(){
+        $categories = Category::all()->toArray();
+        $laguages = Language::all()->toArray();
+        return view('APIs.relatednews',compact('categories','laguages'));
+    }
+
 
 
 }

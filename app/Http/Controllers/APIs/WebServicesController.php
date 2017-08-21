@@ -16,6 +16,9 @@ use Response;
 class WebServicesController extends Controller
 {
 
+    /**
+     *
+     */
     public function categories()
     {
         //        echo "cate";
@@ -30,6 +33,9 @@ class WebServicesController extends Controller
         echo json_encode($data);
     }
 
+    /**
+     * @param Request $request
+     */
     public function subcategories(Request $request)
     {
         // echo "subcat";
@@ -39,6 +45,9 @@ class WebServicesController extends Controller
 
     }
 
+    /**
+     * @return mixed
+     */
     public function allLanguages(){
         $laguages = Language::all()->toArray();
         if(count($laguages) > 0)
@@ -49,6 +58,10 @@ class WebServicesController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function categoryByLanguage(Request $request){
 
         $temp_categories = Category::GetCategoryByLang($request->language_id)->get();
@@ -66,6 +79,10 @@ class WebServicesController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function getNews(Request $request){
 //        dd($request->all());
         if($request->top_news == 0 && $request->recommended_news == 0 && $request->cat_id != ''){
@@ -90,6 +107,37 @@ class WebServicesController extends Controller
                     }
 
                     array_push($news,$x);
+
+            }
+            return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found.','data' =>$news]);
+        }
+        else{
+            return Response::json(['code' => 500, 'status' => false,'message' => 'No News is found write now.','data' =>array()]);
+        }
+
+    }
+
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function relatedNews(Request $request){
+//        dd($request->all());
+
+            $temp_news = News::GetNewsByCreatedAt($request->language_id)->GetNewsByCat($request->cat_id)->orderBy('created_at' ,'desc')->take(3)->get();
+
+         if($temp_news->count() > 0){
+            $news = [];
+            foreach ($temp_news as $key_news => $value_news){
+                $x = $value_news->toArray();
+                $newsimages = $value_news->newsImage()->get()->toArray();
+                $x['newsImage'] = [];
+                foreach ($newsimages as $key_img => $value_img){
+                    array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
+                }
+
+                array_push($news,$x);
 
             }
             return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found.','data' =>$news]);
