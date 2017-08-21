@@ -73,10 +73,10 @@ class WebServicesController extends Controller
 
         }
         if($request->top_news != 0 && $request->recommended_news == 0 && $request->cat_id == ''){
-            $temp_news = News::GetNewsByCreatedAt($request->language)->orderBy('created_at' ,'desc')->take(1)->get();
+            $temp_news = News::GetNewsByCreatedAt($request->language)->orderBy('created_at' ,'desc')->take(3)->get();
         }
         if($request->top_news == 0 && $request->recommended_news != 0 && $request->cat_id == ''){
-            $temp_news = News::GetNewsByLike($request->language)->orderBy('like' ,'desc')->take(1)->get();
+            $temp_news = News::GetNewsByLike($request->language)->orderBy('like' ,'desc')->take(2)->get();
         }
 
         if($temp_news->count() > 0){

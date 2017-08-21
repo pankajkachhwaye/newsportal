@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Response;
 use Illuminate\Support\Facades\Hash;
+use JWTAuth;
+use JWTAuthException;
+
 
 class UserController extends Controller
 {
+    /**
+     * @param array $data
+     * @return int
+     */
     protected function createAppUserWithPass(array $data)
     {
         return AppUser::insertGetId([
@@ -23,6 +30,10 @@ class UserController extends Controller
     }
 
 
+    /**
+     * @param array $data
+     * @return int
+     */
     protected function createAppUserWithoutPass(array $data)
     {
         return AppUser::insertGetId([
@@ -34,6 +45,10 @@ class UserController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function registerAppUser(Request $request)
     {
      try {
@@ -66,14 +81,13 @@ class UserController extends Controller
                 $usertemp = $this->createAppUserWithPass($request->all());
             }
 
-                $user = AppUser::find($usertemp);
+            $app_user = AppUser::find($usertemp);
+            $user = $app_user->toArray();
 
-
+             $token = JWTAuth::fromUser($app_user);
+                $user['token'] = $token;
                 return Response::json(['code' => 200,'status' => true, 'message' => 'User Register Successfully','data' => $user]);
-
-
-
-        }
+         }
 
         } catch (\Exception $exception) {
             return Response::json(['code' => 500, 'status' => false, 'message' => $exception->getMessage(),'data' => array()]);
@@ -83,7 +97,10 @@ class UserController extends Controller
     }
 
 
-
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function loginAppUser(Request $request)
     {
         try {
@@ -93,7 +110,10 @@ class UserController extends Controller
                 return Response::json(['code' => 200, 'status' => false, 'message' => 'User is not register with us']);
             }
             if (Hash::check($request->password, $app_user->password)) {
-                return Response::json(['code' => 200, 'status' => true, 'data' => $app_user]);
+                $token = JWTAuth::fromUser($app_user);
+                $user = $app_user->toArray();
+                $user['token'] = $token;
+                return Response::json(['code' => 200, 'status' => true, 'data' => $user]);
             } else {
                 return Response::json(['code' => 200, 'status' => false, 'message' => 'User Password is not match with email address']);
             }
@@ -102,6 +122,15 @@ class UserController extends Controller
         }
 
 
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAuthUser(Request $request){
+        $user = JWTAuth::toUser($request->token);
+        return response()->json(['result' => $user]);
     }
 
 
