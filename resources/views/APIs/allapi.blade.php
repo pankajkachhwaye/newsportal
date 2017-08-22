@@ -25,6 +25,7 @@
         <p><a href="{{url('/api/Allapi/category-form')}}">Categories</a></p>
         <p><a href="{{url('/api/Allapi/news-form')}}">News</a></p>
         <p><a href="{{url('/api/Allapi/related-news-form')}}">Related - News</a></p>
+        <p><a href="{{url('/api/Allapi/like-news-form')}}">Like - News</a></p>
 
         {{--<p><a href="{{url('/api/Allapi/categories')}}">categories</a></p>--}}
         {{--<p><a href="{{url('/api/Allapi/subcategories')}}">Subcategories</a></p>--}}

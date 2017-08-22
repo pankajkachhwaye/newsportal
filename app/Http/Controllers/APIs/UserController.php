@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Models\AppUser;
+use App\Models\Like;
+use App\Models\News;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -44,6 +46,14 @@ class UserController extends Controller
         ]);
     }
 
+
+    /**
+     * @param $token
+     * @return mixed
+     */
+    protected function getAuthUserByToken($token){
+        return JWTAuth::toUser($token);
+    }
 
     /**
      * @param Request $request
@@ -131,6 +141,36 @@ class UserController extends Controller
     public function getAuthUser(Request $request){
         $user = JWTAuth::toUser($request->token);
         return response()->json(['result' => $user]);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function likeNews(Request $request){
+        $user = $this->getAuthUserByToken($request->token);
+     if($user->count() > 0){
+           $check = Like::UserLike($user->id)->NewsLike($request->news_id)->get();
+           if($check->count() > 0){
+               return Response::json(['code' => 500, 'status' => true,'message' => 'User alerdy like these news','data' =>array()]);
+           }
+           else{
+                $data = [
+                    'news_id' => $request->news_id,
+                    'user_id' => $user->id,
+                    'created_at' => Carbon::now()
+                ];
+
+                Like::insert($data);
+                $news = News::find($request->news_id);
+                $news->like = ++$news->like;
+                $news->save();
+
+               return Response::json(['code' => 200, 'status' => true,'message' => 'News like successfully','data' =>array()]);
+           }
+     }
+
     }
 
 

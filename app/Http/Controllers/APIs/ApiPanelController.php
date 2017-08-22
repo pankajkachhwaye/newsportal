@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Categories;
@@ -26,7 +27,7 @@ class ApiPanelController extends Controller
 
     public function categories()
 
-    {
+     {
         return view('APIs.categories');
     }
     public function subcategories()
@@ -62,6 +63,11 @@ class ApiPanelController extends Controller
         return view('APIs.relatednews',compact('categories','laguages'));
     }
 
+
+    public function showLikeNewsForm(){
+        $news = News::all()->toArray();
+        return view('APIs.likenewsform',compact('news'));
+    }
 
 
 }

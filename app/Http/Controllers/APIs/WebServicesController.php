@@ -123,7 +123,6 @@ class WebServicesController extends Controller
      * @return mixed
      */
     public function relatedNews(Request $request){
-//        dd($request->all());
 
             $temp_news = News::GetNewsByCreatedAt($request->language_id)->GetNewsByCat($request->cat_id)->orderBy('created_at' ,'desc')->take(3)->get();
 
@@ -147,5 +146,6 @@ class WebServicesController extends Controller
         }
 
     }
+
 
 }
