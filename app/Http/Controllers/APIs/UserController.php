@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Models\AppUser;
+use App\Models\Favourite;
 use App\Models\Like;
 use App\Models\News;
 use Carbon\Carbon;
@@ -172,6 +173,29 @@ class UserController extends Controller
      }
 
     }
+
+
+    public function addToFavouriteNews(Request $request){
+        $user = $this->getAuthUserByToken($request->token);
+        if($user->count() > 0){
+            $check = Favourite::UserFavourite($user->id)->NewsFavourite($request->news_id)->get();
+            if($check->count() > 0){
+                $delete= Favourite::UserFavourite($user->id)->NewsFavourite($request->news_id)->delete();
+                return Response::json(['code' => 200, 'status' => true,'message' => 'News remove from favourite successfully','data' =>array()]);
+            }
+            else{
+                $data = [
+                    'news_id' => $request->news_id,
+                    'user_id' => $user->id,
+                    'created_at' => Carbon::now()
+                ];
+
+                Favourite::insert($data);
+                return Response::json(['code' => 200, 'status' => true,'message' => 'News added to favourite successfully','data' =>array()]);
+            }
+        }
+    }
+
 
 
 

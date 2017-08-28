@@ -69,6 +69,11 @@ class ApiPanelController extends Controller
         return view('APIs.likenewsform',compact('news'));
     }
 
+    public function showAddFavrouiteNewsForm(){
+        $news = News::all()->toArray();
+        return view('APIs.addfavourite',compact('news'));
+    }
+
 
 }
 

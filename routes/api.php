@@ -22,6 +22,7 @@ Route::post('auth/login', 'UserController@login');
 Route::group(['namespace'=>'APIs','middleware' => 'jwt.auth'], function () {
     Route::get('user', 'UserController@getAuthUser');
     Route::post('like-news', 'UserController@likeNews');
+    Route::post('add-remove-favourite-news', 'UserController@addToFavouriteNews');
 });
 
 Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
@@ -36,6 +37,7 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
     Route::get('/news-form','ApiPanelController@showNewsForm');
     Route::get('/related-news-form','ApiPanelController@showRelatedNewsForm');
     Route::get('/like-news-form','ApiPanelController@showLikeNewsForm');
+    Route::get('/add-favourite-news-form','ApiPanelController@showAddFavrouiteNewsForm');
 
 
 });
