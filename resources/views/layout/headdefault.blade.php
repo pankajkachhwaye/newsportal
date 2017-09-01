@@ -25,6 +25,7 @@
 
     <!-- Morris Chart Css-->
     <link href="{{URL::asset('plugins/morrisjs/morris.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="{{URL::asset('css/style.css')}}" rel="stylesheet">

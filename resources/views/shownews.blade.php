@@ -24,7 +24,8 @@
 
                         </div>
                         <div class="body">
-                            <table class="table table-border" >
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" >
+                               <thead>
                                 <tr>
 
                                     <th>Language</th>

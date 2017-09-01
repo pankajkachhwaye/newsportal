@@ -16,6 +16,11 @@
 <script src="{{URL::asset('plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
 
 
+<!-- Jquery DataTable Plugin Js -->
+<script src="{{URL::asset('plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
+<script src="{{URL::asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
+
+
 <!-- Jquery CountTo Plugin Js -->
 <script src="{{URL::asset('plugins/jquery-countto/jquery.countTo.js')}}"></script>
 
@@ -25,6 +30,14 @@
 
 <!-- ChartJs -->
 <script src="{{URL::asset('plugins/chartjs/Chart.bundle.js')}}"></script>
+
+
+<!-- Autosize Plugin Js -->
+<script src="{{URL::asset('plugins/autosize/autosize.js')}}"></script>
+<!-- Moment Plugin Js -->
+<script src="{{URL::asset('plugins/momentjs/moment.js')}}"></script>
+
+<script src="{{URL::asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
 
 <script src="{{URL::asset('plugins/jquery-validation/jquery.validate.js')}}"></script>
 
@@ -42,3 +55,33 @@
 <script src="{{URL::asset('js/demo.js')}}"></script>
 <script src="{{ URL::asset('plugins/bootstrap-notify/bootstrap-notify.js')  }}"></script>
 <script src="{{URL::asset('js/script.js')}}"></script>
+<script type="text/javascript">
+    $(function () {
+//        Textare auto growth
+        autosize($('textarea.auto-growth'));
+
+//        Datetimepicker plugin
+        $('.datetimepicker').bootstrapMaterialDatePicker({
+            format: 'dddd DD MMMM YYYY - HH:mm',
+            clearButton: true,
+            weekStart: 1
+        });
+
+        $('.datepicker').bootstrapMaterialDatePicker({
+            format: 'dddd DD MMMM YYYY',
+            clearButton: true,
+            weekStart: 1,
+            time: false
+        });
+
+        $('.timepicker').bootstrapMaterialDatePicker({
+            format: 'HH:mm',
+            clearButton: true,
+            date: false
+        });
+        $('.js-basic-example').DataTable({
+            responsive: true
+        });
+    });
+
+</script>
