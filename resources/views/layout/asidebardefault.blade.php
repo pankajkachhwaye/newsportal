@@ -36,7 +36,7 @@
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="active">
-                    <a href={{url('/Deals')}}>
+                    <a href={{url('/home')}}>
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
@@ -107,7 +107,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{url('/Deals')}}">
+                            <a href="{{url('/show-news')}}">
                                 <span>Show</span>
                             </a>
 

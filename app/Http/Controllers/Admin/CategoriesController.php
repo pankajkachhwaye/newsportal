@@ -41,9 +41,16 @@ class CategoriesController extends Controller
     }
     public function show()
     {
-        $categorie=new Categories();
-        $data=$categorie->get()->toArray();
-        return view('showcategories',compact("data"));
+        $data = Category::all();
+        $categories = [];
+        foreach ($data as $keyCate => $valueCate){
+            $language = $valueCate->language->first(['language_name']);
+            $x =$valueCate->toArray();
+            $x['language_name'] = $language->language_name;
+            unset($x['language']);
+            array_push($categories,$x);
+        }
+        return view('showcategories',compact("categories"));
     }
     public function delete($id)
     {

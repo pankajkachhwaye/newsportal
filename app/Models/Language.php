@@ -12,4 +12,7 @@ class Language extends Model
         'language_name'
     ];
 
+    public function category(){
+        return $this->hasMany('App\Models\Category','language_id');
+    }
 }

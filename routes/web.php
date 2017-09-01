@@ -34,6 +34,7 @@ Route::group(['namespace'=>'Admin'], function(){
     Route::get('/add-language','AdminController@addLanguageForm');
     Route::post('/post-language','AdminController@postLanguage');
     Route::get('/add-news','AdminController@addNewsForm');
+    Route::get('/show-news','AdminController@showNews');
     Route::get('/category-by-lang/{id}','AdminController@categoryByLang');
     Route::post('/post-news','AdminController@postNews');
 });

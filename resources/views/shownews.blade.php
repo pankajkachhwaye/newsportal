@@ -1,6 +1,6 @@
 @extends('app')
 @section('pagetitle')
-    All Categories
+    All News
 @endsection
 
 @section('main-content')
@@ -26,23 +26,26 @@
                         <div class="body">
                             <table class="table table-border" >
                                 <tr>
-                                    <th>id</th>
-                                    <th>Categories ID</th>
-                                    <th>SubCategories Name</th>
-                                    <th>Image</th>
+
+                                    <th>Language</th>
+                                    <th>Category</th>
+                                    <th>News</th>
+                                    <th>Like</th>
                                     <th>Edit</th>
                                     <th>delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $news)
+                                @foreach($news as $value_news)
                                     <tr>
-                                        <td>{{ $news['id'] }}</td>
-                                        <td>{{ $news['cat_id'] }}</td>
-                                        <td>{{ $news['news_title'] }}</td>
-                                        <td><img src={{ asset('storage/'.$news['news_image']) }} alt="Categories_Image" height="100px" width="100px"> </td>
-                                        <td><a href="{{url('Deals/edit').'/'.$news['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
-                                        <td><a href="{{url('Deals/destroy').'/'.$news['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
+
+                                        <td>{{ $value_news['language'] }}</td>
+                                        <td>{{ $value_news['category_name'] }}</td>
+                                        <td>{{ $value_news['news_title'] }}</td>
+                                        <td>{{ $value_news['like'] }}</td>
+
+                                        <td><a href="{{url('Deals/edit').'/'.$value_news['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
+                                        <td><a href="{{url('Deals/destroy').'/'.$value_news['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
                                     </tr>
 
                                 @endforeach

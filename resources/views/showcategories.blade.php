@@ -10,7 +10,7 @@
             <div class="block-header">
                 <h2>
                     Categories
-                    <small>Taken from <a href="https://datatables.net/" target="_blank">Categories</a></small>
+
                 </h2>
             </div>
             <!-- Basic Examples -->
@@ -21,24 +21,14 @@
                             <h2>
                                 All Categories
                             </h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+
                         </div>
                         <div class="body">
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                 <tr>
                                     <th>id</th>
+                                    <th>Language</th>
                                     <th>Categories Name</th>
                                     <th>Image</th>
                                     <th>Edit</th>
@@ -46,19 +36,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $categories)
+                                @foreach($categories as $categorie)
                                     <tr>
-                                        <td>{{ $categories['id'] }}</td>
-                                        <td>{{ $categories['categories_name'] }}</td>
-                                        <td><img src={{asset('storage/'.$categories['categories_image']) }} alt="Categories_Image" height="100px" width="100px"> </td>
-                                        <td><a href="{{url('Categories/edit').'/'.$categories['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
-                                        <td><a href="{{url('Categories/delete').'/'.$categories['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
+                                        <td>{{ $categorie['id'] }}</td>
+                                        <td>{{ $categorie['category_name'] }}</td>
+                                        <td>{{ $categorie['language_name'] }}</td>
+                                        <td><img src={{asset('storage/'.$categorie['category_icon']) }} alt="Categories_Image" height="100px" width="100px"> </td>
+                                        <td><a href="{{url('Categories/edit').'/'.$categorie['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
+                                        <td><a href="{{url('Categories/delete').'/'.$categorie['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
 
                                     </tr>
 
 
 
-                                    {{ $categories['id'] }}
                                 </tbody>
                                 @endforeach
                                 {{--<tfoot>--}}

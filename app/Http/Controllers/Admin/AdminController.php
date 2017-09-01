@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Repository\CrudRepository;
 use App\Models\Language;
+use App\Models\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -63,5 +64,19 @@ class AdminController extends Controller
         else{
             return back()->with('returnStatus', true)->with('status', 101)->with('message', $save['message']);
         }
+    }
+
+    public function showNews(){
+        $temp_news = News::all();
+        $news = [];
+        foreach ($temp_news as $key_news => $value_news){
+            $category = $value_news->category->first(['category_name']);
+            $x =$value_news->toArray();
+            $x['category_name'] = $category->category_name;
+            unset($x['category']);
+            array_push($news,$x);
+        }
+//        dd($news);
+        return view('shownews',compact('news'));
     }
 }
