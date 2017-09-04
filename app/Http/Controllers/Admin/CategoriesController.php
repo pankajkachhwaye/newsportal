@@ -44,12 +44,13 @@ class CategoriesController extends Controller
         $data = Category::all();
         $categories = [];
         foreach ($data as $keyCate => $valueCate){
-            $language = $valueCate->language->first(['language_name']);
+            $language = $valueCate->language;
             $x =$valueCate->toArray();
             $x['language_name'] = $language->language_name;
             unset($x['language']);
             array_push($categories,$x);
         }
+
         return view('showcategories',compact("categories"));
     }
     public function delete($id)
