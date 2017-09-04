@@ -51,7 +51,7 @@
                                     <div class="card">
                                         <div class="header">
                                             <h2>
-                                                All Locations
+                                                All Language
                                             </h2>
                                         </div>
                                         <div class="body">
@@ -59,8 +59,8 @@
                                                 <thead>
                                                 <tr>
 
-                                                    <th>ID</th>
-                                                    <th>Area Of Sector Name</th>
+                                                    <th>S No.</th>
+                                                    <th>Language Name</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
@@ -69,7 +69,7 @@
                                                 @foreach($laguages as $key_laguauge => $value_laguauge)
                                                     <tr>
                                                         <td>
-                                                            {{$value_laguauge['id']}}
+                                                            {{$key_laguauge + 1 }}
                                                         </td>
                                                         <td>
                                                             {{$value_laguauge['language_name']}}

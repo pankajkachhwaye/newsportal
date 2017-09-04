@@ -21,8 +21,8 @@
 <body class="login-page">
 <div class="login-box">
     <div class="logo">
-        <a href="javascript:void(0);">Admin<b>BSB</b></a>
-        <small>Admin BootStrap Based - Material Design</small>
+        <a href="javascript:void(0);">News<b>Portal</b></a>
+        {{--<small>Admin BootStrap Based - Material Design</small>--}}
     </div>
     <div class="card">
         <div class="body">
@@ -61,9 +61,9 @@
                     </div>
                 </div>
                 <div class="row m-t-15 m-b--20">
-                    <div class="col-xs-6">
-                        <a href="sign-up.html">Register Now!</a>
-                    </div>
+                    {{--<div class="col-xs-6">--}}
+                        {{--<a href="sign-up.html">Register Now!</a>--}}
+                    {{--</div>--}}
                     <div class="col-xs-6 align-right">
                         <a href="{{ url('/password/reset') }}">Forgot Password?</a>
                     </div>

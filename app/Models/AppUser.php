@@ -27,4 +27,8 @@ class AppUser extends Model
             ->orWhere('mobile_no', $value);
     }
 
+    public function getUpdatedAtAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
 }

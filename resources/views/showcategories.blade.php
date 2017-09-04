@@ -27,7 +27,7 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                 <tr>
-                                    <th>id</th>
+                                    <th>S No.</th>
                                     <th>Language</th>
                                     <th>Categories Name</th>
                                     <th>Image</th>
@@ -36,11 +36,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categories as $categorie)
+                                @foreach($categories as $key => $categorie)
                                     <tr>
-                                        <td>{{ $categorie['id'] }}</td>
-                                        <td>{{ $categorie['category_name'] }}</td>
+                                        <td>{{ $key + 1 }}</td>
                                         <td>{{ $categorie['language_name'] }}</td>
+                                        <td>{{ $categorie['category_name'] }}</td>
                                         <td><img src={{asset('storage/'.$categorie['category_icon']) }} alt="Categories_Image" height="100px" width="100px"> </td>
                                         <td><a href="{{url('Categories/edit').'/'.$categorie['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
                                         <td><a href="{{url('Categories/delete').'/'.$categorie['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>

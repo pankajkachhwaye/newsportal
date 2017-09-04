@@ -27,7 +27,7 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable" >
                                <thead>
                                 <tr>
-
+                                    <th>S No.</th>
                                     <th>Language</th>
                                     <th>Category</th>
                                     <th>News</th>
@@ -37,9 +37,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($news as $value_news)
+{{--                                {{dd($news)}}--}}
+                                @foreach($news as $key => $value_news)
                                     <tr>
 
+                                        <td>{{ $key + 1 }}</td>
                                         <td>{{ $value_news['language'] }}</td>
                                         <td>{{ $value_news['category_name'] }}</td>
                                         <td>{{ $value_news['news_title'] }}</td>

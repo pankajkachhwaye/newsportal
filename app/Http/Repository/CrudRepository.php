@@ -77,11 +77,21 @@ class CrudRepository
             'created_at'=>Carbon::now()
 
         ];
-
+        foreach ($data as $key_img =>$value_img){
+            $ext = $value_img->getClientOriginalExtension();
+//            dd($ext);
+            $ext_array = ['jpg','png','jpeg','gif'];
+            if(!in_array($ext, $ext_array)){
+                return ['code' => 101, 'message' => 'wrong file format please select correct file format.'];
+            }
+        }
         $insert = News::insertGetId($insertArray);
         foreach ($data as $key_img =>$value_img){
             $random = str_random(5);
             $ext = $value_img->getClientOriginalExtension();
+            if($ext != 'jpg' || $ext != 'png' || $ext != 'jpeg' || $ext !='gif'){
+                return ['code' => 101, 'message' => 'News Added Successfully'];
+            }
             $path= Storage::putFileAs('news_Image', $value_img, time().$cat_id.$random.".".$ext);
             $temp_data = [
                 'news_id' =>$insert,
