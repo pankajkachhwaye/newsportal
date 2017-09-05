@@ -27,6 +27,7 @@
         <p><a href="{{url('/api/Allapi/related-news-form')}}">Related - News</a></p>
         <p><a href="{{url('/api/Allapi/like-news-form')}}">Like - News</a></p>
         <p><a href="{{url('/api/Allapi/add-favourite-news-form')}}">Add - To - Favourite - News</a></p>
+        <p><a href="{{url('/api/Allapi/get-favourite-news-form')}}">Get - Favourite - News</a></p>
 
         {{--<p><a href="{{url('/api/Allapi/categories')}}">categories</a></p>--}}
         {{--<p><a href="{{url('/api/Allapi/subcategories')}}">Subcategories</a></p>--}}

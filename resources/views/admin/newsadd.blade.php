@@ -59,7 +59,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input required type="text" name="news_title" id="companyName" class="form-control" placeholder="Enter your Company Name">
+                                                <input required type="text" name="news_title" id="companyName" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <textarea required type="text" name="news_description" id="companyName" class="form-control" placeholder="Enter your News Description">
+                                                <textarea required type="text" name="news_description" id="companyName" class="form-control" >
                                                 </textarea>
                                             </div>
                                         </div>
@@ -86,7 +86,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input required type="text" name="city" id="companyName" class="form-control" placeholder="Enter your Company Name">
+                                                <input required type="text" name="city" id="companyName" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" name="ref_url" id="companyName" class="form-control" placeholder="Enter your Company Name">
+                                                <input type="text" name="ref_url" id="companyName" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input required type="text" name="country" id="companyName" class="form-control" placeholder="Enter your Company Name">
+                                                <input required type="text" name="country" id="companyName" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="test" name="news_video_url" id=" profilePic" class="form-control" placeholder="Enter your category">
+                                                <input type="test" name="news_video_url" id=" profilePic" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input required type="file" name="news_image" id=" profilePic" class="form-control input_value" placeholder="Enter your category">
+                                                    <input required type="file" name="news_image" id=" profilePic" class="form-control input_value" >
                                                 </div>
                                             </div>
                                         </div>

@@ -23,6 +23,8 @@
 
                         </div>
                         <div class="body">
+
+                            <div class="row clearfix">
                             <form method="POST" enctype="multipart/form-data"  id="add_attribute" action="{{ url('/post-language')  }}">
                                 {{csrf_field()}}
                                 <div class="row clearfix">
@@ -45,6 +47,7 @@
                                     </div>
                                 </div>
                             </form>
+                            </div>
 
                             <div class="row clearfix">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

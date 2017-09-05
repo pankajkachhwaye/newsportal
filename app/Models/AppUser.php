@@ -31,4 +31,8 @@ class AppUser extends Model
     {
         return ($value == null ? '':$value);
     }
+
+    public function userFavourite(){
+       return $this->hasMany('App\Models\Favourite','user_id');
+    }
 }

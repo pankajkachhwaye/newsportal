@@ -38,6 +38,7 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
     Route::get('/related-news-form','ApiPanelController@showRelatedNewsForm');
     Route::get('/like-news-form','ApiPanelController@showLikeNewsForm');
     Route::get('/add-favourite-news-form','ApiPanelController@showAddFavrouiteNewsForm');
+    Route::get('/get-favourite-news-form','ApiPanelController@showGetFavrouiteNewsForm');
 
 
 });
@@ -51,6 +52,7 @@ Route::group(['namespace'=>'APIs'],function(){
     Route::post('/categories-by-language','WebServicesController@categoryByLanguage');
     Route::post('/news','WebServicesController@getNews');
     Route::post('/related-news','WebServicesController@relatedNews');
+    Route::post('/get-favourite-news','UserController@getFavouriteNews');
 
     Route::get('/categories','WebServicesController@categories');
     Route::post('/subcategories','WebServicesController@subcategories');

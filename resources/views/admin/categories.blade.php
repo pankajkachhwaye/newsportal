@@ -50,7 +50,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" name="category_name" id="companyName" class="form-control" placeholder="Enter your Company Name">
+                                                <input type="text" name="category_name" id="companyName" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +63,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="file" name="category_icon" id=" profilePic" class="form-control" placeholder="Enter your category">
+                                                <input type="file" name="category_icon" id=" profilePic" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
                                         <button  type="submit" class="btn btn-primary m-t-15 waves-effect">Submit</button>
-                                        <button  type="reset" class="btn btn-primary m-t-15 waves-effect">Reset</button>
+
                                     </div>
                                 </div>
                             </form>

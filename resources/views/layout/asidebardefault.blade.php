@@ -29,7 +29,7 @@
         <div class="menu">
             <ul class="list">
                 {{--<li class="header">MAIN NAVIGATION</li>--}}
-                <li class="active">
+                <li class="{{(isset($page) && $page && $page=='home')?'active':''}}">
                     <a href={{url('/home')}}>
                         <i class="material-icons">home</i>
                         <span>Home</span>
@@ -37,29 +37,29 @@
                 </li>
                 {{--<li>--}}
                     {{--<a href="{{url('/merchant')}}">--}}
-                        {{--<i class="material-icons">text_fields</i>--}}
+                        {{--<i class="material-icons">text_ficlass="menu-toggle"elds</i>--}}
                         {{--<span>client Registration</span>--}}
                     {{--</a>--}}
                 {{--</li>--}}
-                <li>
-                    <a href="{{url('add-language')}}" class="menu-toggle">
+                <li  class="{{(isset($page) && $page && $page=='language')?'active':''}}">
+                    <a href="{{url('add-language')}}">
                         <i class="material-icons">widgets</i>
                         <span>Languages</span>
                     </a>
                 </li>
 
-                <li>
+                <li  class="{{(isset($page) && $page && $page=='category')?'active':''}}">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">widgets</i>
                         <span>Categories</span>
                     </a>
                     <ul class="ml-menu">
-                        <li>
+                        <li class="{{(isset($sub_page) && $sub_page && $sub_page=='category-add')?'active':''}}">
                             <a href="{{url('/Categories/add')}}">
                                 <span>Add</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="{{(isset($sub_page) && $sub_page && $sub_page=='category-show')?'active':''}}">
                             <a href="{{url('/Categories/show')}}">
                                 <span>Show</span>
                             </a>
@@ -89,24 +89,30 @@
                     {{--</ul>--}}
                 {{--</li>--}}
 
-                <li>
+                <li  class="{{(isset($page) && $page && $page=='news')?'active':''}}">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">widgets</i>
                         <span>News</span>
                     </a>
                     <ul class="ml-menu">
-                        <li>
+                        <li class="{{(isset($sub_page) && $sub_page && $sub_page=='news-add')?'active':''}}">
                             <a href="{{url('/add-news')}}">
                                 <span>Add</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="{{(isset($sub_page) && $sub_page && $sub_page=='news-show')?'active':''}}">
                             <a href="{{url('/show-news')}}">
                                 <span>Show</span>
                             </a>
 
                         </li>
                     </ul>
+                </li>
+                <li  class="{{(isset($page) && $page && $page=='notification')?'active':''}}">
+                    <a href="{{url('add-language')}}">
+                        <i class="material-icons">widgets</i>
+                        <span>Notifications</span>
+                    </a>
                 </li>
 
                 {{--<li>--}}

@@ -74,6 +74,9 @@ class ApiPanelController extends Controller
         return view('APIs.addfavourite',compact('news'));
     }
 
+    public function showGetFavrouiteNewsForm(){
+        return view('APIs.getfavourite' );
+    }
 
 }
 

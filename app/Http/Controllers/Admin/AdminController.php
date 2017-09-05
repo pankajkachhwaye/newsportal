@@ -20,8 +20,9 @@ class AdminController extends Controller
     }
 
     public function addLanguageForm(){
+        $page = 'language';
         $laguages = Language::all()->toArray();
-        return view('admin.languageform',compact('laguages'));
+        return view('admin.languageform',compact('laguages','page'));
     }
 
     public function postLanguage(Request $request,CrudRepository $repo){
@@ -36,8 +37,10 @@ class AdminController extends Controller
     }
 
     public function addNewsForm(){
+        $page = 'news';
+        $sub_page = 'news-add';
         $laguages = Language::all()->toArray();
-        return view('admin.newsadd',compact('laguages'));
+        return view('admin.newsadd',compact('laguages','page','sub_page'));
     }
 
     public function categoryByLang($id){
@@ -67,6 +70,8 @@ class AdminController extends Controller
     }
 
     public function showNews(){
+        $page = 'news';
+        $sub_page = 'news-show';
         $temp_news = News::all();
         $news = [];
         foreach ($temp_news as $key_news => $value_news){
@@ -77,6 +82,12 @@ class AdminController extends Controller
             array_push($news,$x);
         }
 //        dd($news);
-        return view('shownews',compact('news'));
+        return view('shownews',compact('news','page','sub_page'));
+    }
+
+    public function deleteNews($id){
+        $news = News::find($id);
+        $news->delete();
+        return back()->with('returnStatus', true)->with('status', 101)->with('message','News deleted successfully');
     }
 }

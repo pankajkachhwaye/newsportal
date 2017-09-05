@@ -196,6 +196,33 @@ class UserController extends Controller
         }
     }
 
+    public function getFavouriteNews(Request $request){
+        $user = $this->getAuthUserByToken($request->token);
+
+        if($user->count() > 0){
+            $favourite = $user->userFavourite()->get();
+            if($favourite->count() > 0){
+                $news = [];
+                foreach ($favourite as $key_news => $value_news){
+                    $temp_news = News::find($value_news->news_id);
+                   $x = $temp_news->toArray();
+                    $newsimages = $temp_news->newsImage()->get()->toArray();
+                    $x['newsImage'] = [];
+                    foreach ($newsimages as $key_img => $value_img){
+                        array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
+                    }
+
+                    array_push($news,$x);
+
+                }
+                return Response::json(['code' => 200, 'status' => true,'message' => 'News found in favourite list','data' =>$news]);
+            }
+            else{
+                return Response::json(['code' => 200, 'status' => false,'message' => 'No news added to favourite list','data' =>array()]);
+            }
+        }
+    }
+
 
 
 

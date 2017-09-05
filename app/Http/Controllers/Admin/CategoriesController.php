@@ -18,8 +18,10 @@ class CategoriesController extends Controller
 
     public function add()
     {
+        $page = 'category';
+        $sub_page = 'category-add';
         $laguages = Language::all()->toArray();
-        return view('admin.categories',compact('laguages'));
+        return view('admin.categories',compact('laguages','page','sub_page'));
     }
     public function store(Request $request)
     {
@@ -41,6 +43,8 @@ class CategoriesController extends Controller
     }
     public function show()
     {
+        $page = 'category';
+        $sub_page = 'category-show';
         $data = Category::all();
         $categories = [];
         foreach ($data as $keyCate => $valueCate){
@@ -51,7 +55,7 @@ class CategoriesController extends Controller
             array_push($categories,$x);
         }
 
-        return view('showcategories',compact("categories"));
+        return view('showcategories',compact("categories",'page','sub_page'));
     }
     public function delete($id)
     {
