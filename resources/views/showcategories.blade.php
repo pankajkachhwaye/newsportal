@@ -8,10 +8,10 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>
+              {{--  <h2>
                     Categories
 
-                </h2>
+                </h2>--}}
             </div>
             <!-- Basic Examples -->
             <div class="row clearfix">

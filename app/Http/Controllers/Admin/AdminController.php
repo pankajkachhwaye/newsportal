@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Repository\CrudRepository;
+use App\Models\AppUser;
+use App\Models\DeviceInfo;
 use App\Models\Language;
 use App\Models\News;
+use App\Notifications\GenralNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -83,11 +86,30 @@ class AdminController extends Controller
         }
 //        dd($news);
         return view('shownews',compact('news','page','sub_page'));
+
     }
 
     public function deleteNews($id){
         $news = News::find($id);
         $news->delete();
         return back()->with('returnStatus', true)->with('status', 101)->with('message','News deleted successfully');
+    }
+
+    public function sendNotificationAllUser(){
+        $page = 'notification';
+        $sub_page = 'notify-all-users';
+        return view('admin.notifyall',compact('page','sub_page'));
+    }
+
+    public function notifAllUsers(Request $request){
+        $devices = DeviceInfo::all();
+
+        foreach ($devices as $key_device => $value_device){
+
+            $value_device->notify(new GenralNotification($request->notification_title, $request->notification_body));
+        }
+
+        return back()->with('returnStatus', true)->with('status', 101)->with('message','notification send successfully');
+
     }
 }

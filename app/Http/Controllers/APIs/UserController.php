@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\APIs;
 
 use App\Models\AppUser;
+use App\Models\DeviceInfo;
 use App\Models\Favourite;
 use App\Models\Like;
 use App\Models\News;
@@ -85,13 +86,48 @@ class UserController extends Controller
             else
                 return Response::json(['code' => 400,'status' => false, 'message' => 'Please provide email address','data' => array()]);
 
+
+
             if($request->password == null){
-                $usertemp = $this->createAppUserWithoutPass($request->all());
+                $user_array = [
+                   'full_name' => $request->full_name,
+                   'email' => $request->email,
+                   'mobile_no' => $request->mobile_no,
+
+                ];
+                $usertemp = $this->createAppUserWithoutPass($user_array);
             }
             else{
-                $usertemp = $this->createAppUserWithPass($request->all());
+                $user_array = [
+                    'full_name' => $request->full_name,
+                    'email' => $request->email,
+                    'mobile_no' => $request->mobile_no,
+                    'password' => $request->password,
+                ];
+                $usertemp = $this->createAppUserWithPass($user_array);
             }
 
+            $check_device = DeviceInfo::where('device_id',$request->device_id)->first();
+            if($check_device != null){
+                $device_array = [
+                    'app_user_id' => $usertemp,
+                    'device_id' => $request->device_id,
+                    'device_token' => $request->device_token,
+                    'device_type' => $request->device_type,
+                    'updated_at' => Carbon::now()
+                ];
+                DeviceInfo::where('device_id',$request->device_id)->update($device_array);
+            }
+            else{
+                $device_array = [
+                    'app_user_id' => $usertemp,
+                    'device_id' => $request->device_id,
+                    'device_token' => $request->device_token,
+                    'device_type' => $request->device_type,
+                    'created_at' => Carbon::now()
+                ];
+                DeviceInfo::insert($device_array);
+            }
             $app_user = AppUser::find($usertemp);
             $user = $app_user->toArray();
 
@@ -207,6 +243,11 @@ class UserController extends Controller
                     $temp_news = News::find($value_news->news_id);
                    $x = $temp_news->toArray();
                     $newsimages = $temp_news->newsImage()->get()->toArray();
+
+                    if(count($newsimages) > 0)
+                        $x['image'] =  asset('storage/'.$newsimages[0]['news_image']);
+                    else
+                        $x['image'] = '';
                     $x['newsImage'] = [];
                     foreach ($newsimages as $key_img => $value_img){
                         array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
@@ -224,6 +265,29 @@ class UserController extends Controller
     }
 
 
+    public function getAllNotifications(Request $request){
+        $user = $this->getAuthUserByToken($request->token);
+
+        if($user->count() > 0){
+          $user_device = $user->deviceInfo;
+
+          $notifications = $user_device->notifications->toArray();
+//        dd($notifications);
+          if(count($notifications) > 0){
+              $temp_notification = [];
+              foreach ($notifications as $key_notify => $value_notify){
+               $value_notify['data']['created_at'] = $value_notify['created_at'];
+               array_push($temp_notification,$value_notify['data']);
+              }
+
+              return Response::json(['code' => 200, 'status' => true,'message' => 'News found in favourite list','data' =>$temp_notification]);
+          }
+          else{
+              return Response::json(['code' => 200, 'status' => false,'message' => 'No notification found','data' =>array()]);
+          }
+
+        }
+    }
 
 
 }

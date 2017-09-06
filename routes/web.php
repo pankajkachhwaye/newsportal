@@ -38,6 +38,8 @@ Route::group(['namespace'=>'Admin'], function(){
     Route::get('/delete-news/{id}','AdminController@deleteNews');
     Route::get('/category-by-lang/{id}','AdminController@categoryByLang');
     Route::post('/post-news','AdminController@postNews');
+    Route::get('/send-notification-all-user','AdminController@sendNotificationAllUser');
+    Route::post('/notify-all-users','AdminController@notifAllUsers');
 });
 
 Route::group(['prefix'=> 'Categories', 'namespace'=>'Admin'], function(){

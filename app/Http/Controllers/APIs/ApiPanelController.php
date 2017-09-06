@@ -78,5 +78,10 @@ class ApiPanelController extends Controller
         return view('APIs.getfavourite' );
     }
 
+    public function showGetAllNotificationsForm(){
+        return view('APIs.getnotification' );
+    }
+
+
 }
 

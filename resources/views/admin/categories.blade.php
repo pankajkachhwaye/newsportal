@@ -8,7 +8,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>Category</h2>
+               {{-- <h2>Category</h2>--}}
             </div>
 
 

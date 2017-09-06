@@ -101,8 +101,20 @@ class WebServicesController extends Controller
             foreach ($temp_news as $key_news => $value_news){
                     $x = $value_news->toArray();
                     $newsimages = $value_news->newsImage()->get()->toArray();
-                     $x['newsImage'] = [];
-                    foreach ($newsimages as $key_img => $value_img){
+//                        dd($newsimages);
+                     if(count($newsimages) > 0){
+                         $x['image'] =  asset('storage/'.$newsimages[0]['news_image']);
+                     }
+
+                     else
+                         {
+                             $x['image'] = '';
+
+
+                         }
+
+                $x['newsImage'] = [];
+                     foreach ($newsimages as $key_img => $value_img){
                       array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
                     }
 
@@ -131,6 +143,10 @@ class WebServicesController extends Controller
             foreach ($temp_news as $key_news => $value_news){
                 $x = $value_news->toArray();
                 $newsimages = $value_news->newsImage()->get()->toArray();
+                if(count($newsimages) > 0)
+                    $x['image'] =  asset('storage/'.$newsimages[0]['news_image']);
+                else
+                    $x['image'] = '';
                 $x['newsImage'] = [];
                 foreach ($newsimages as $key_img => $value_img){
                     array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));

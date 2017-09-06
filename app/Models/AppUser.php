@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class AppUser extends Model
 {
+
+    use Notifiable;
     protected $table = 'app_users';
 
 //    protected $fillable = [
@@ -34,5 +37,9 @@ class AppUser extends Model
 
     public function userFavourite(){
        return $this->hasMany('App\Models\Favourite','user_id');
+    }
+
+    public function deviceInfo(){
+        return $this->hasOne('App\Models\DeviceInfo','app_user_id');
     }
 }

@@ -28,6 +28,13 @@
     mobile_no ::*<input type="text"  name="mobile_no" >
     <br />
 
+    device_id ::*<input type="text"  name="device_id" >
+    <br />
+    device_token ::*<input type="text"  name="device_token" >
+    <br />
+    device_type ::*<input type="text"  name="device_type" >
+    <br />
+
 
 
     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">REGISTER</button>

@@ -8,9 +8,9 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>
+                {{--<h2>
                    All News
-                </h2>
+                </h2>--}}
             </div>
             <!-- Basic Examples -->
             <div class="row clearfix">
