@@ -46,6 +46,8 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
 
 });
 
+
+
 Route::group(['namespace'=>'APIs'],function(){
 
 
@@ -59,6 +61,7 @@ Route::group(['namespace'=>'APIs'],function(){
 
     Route::get('/categories','WebServicesController@categories');
     Route::post('/subcategories','WebServicesController@subcategories');
+    Route::post('/forgot-password','WebServicesController@forgotPassword');
 
 
 });

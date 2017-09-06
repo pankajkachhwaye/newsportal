@@ -100,6 +100,10 @@ class WebServicesController extends Controller
                 $news = [];
             foreach ($temp_news as $key_news => $value_news){
                     $x = $value_news->toArray();
+                $created = new \Carbon\Carbon($value_news->created_at);
+                $x['created'] =$created->diffForHumans();
+
+
                     $newsimages = $value_news->newsImage()->get()->toArray();
 //                        dd($newsimages);
                      if(count($newsimages) > 0){
@@ -142,11 +146,14 @@ class WebServicesController extends Controller
             $news = [];
             foreach ($temp_news as $key_news => $value_news){
                 $x = $value_news->toArray();
+                $created = new \Carbon\Carbon($value_news->created_at);
+                $x['created'] =$created->diffForHumans();
                 $newsimages = $value_news->newsImage()->get()->toArray();
                 if(count($newsimages) > 0)
                     $x['image'] =  asset('storage/'.$newsimages[0]['news_image']);
                 else
                     $x['image'] = '';
+
                 $x['newsImage'] = [];
                 foreach ($newsimages as $key_img => $value_img){
                     array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
@@ -162,6 +169,11 @@ class WebServicesController extends Controller
         }
 
     }
+
+    public function forgotPassword(Request $request){
+
+    }
+
 
 
 }

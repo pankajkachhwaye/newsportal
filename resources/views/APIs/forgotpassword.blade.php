@@ -8,19 +8,19 @@
 
 <body>
 <h1>
-    URL::   {{url('/').'/api/get-favourite-news'}}
+    URL::   {{url('/').'/api/forgot-password'}}
 
 </h1>
-<form  method="post"  action=" {{url('/api/get-favourite-news')}}" >
+<form  method="post"  action=" {{url('/api/forgot-password')}}" >
 
     <br>
-    Email(token) ::*<input type="text" required  name="email" >
+    Token(token) ::*<input type="text"  name="token" >
 
 
     <br>
     <br>
 
-  <button type="submit">Submit</button>
+    <button type="submit">Submit</button>
 
 
 

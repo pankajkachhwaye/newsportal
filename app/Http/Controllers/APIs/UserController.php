@@ -242,12 +242,15 @@ class UserController extends Controller
                 foreach ($favourite as $key_news => $value_news){
                     $temp_news = News::find($value_news->news_id);
                    $x = $temp_news->toArray();
+                    $created = new \Carbon\Carbon($value_news->created_at);
+                    $x['created'] =$created->diffForHumans();
                     $newsimages = $temp_news->newsImage()->get()->toArray();
 
                     if(count($newsimages) > 0)
                         $x['image'] =  asset('storage/'.$newsimages[0]['news_image']);
                     else
                         $x['image'] = '';
+
                     $x['newsImage'] = [];
                     foreach ($newsimages as $key_img => $value_img){
                         array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
