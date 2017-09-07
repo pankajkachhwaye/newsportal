@@ -161,6 +161,27 @@ class UserController extends Controller
                 return Response::json(['code' => 200, 'status' => false, 'message' => 'User is not register with us']);
             }
             if (Hash::check($request->password, $app_user->password)) {
+                $app_user_device = $app_user->deviceInfo;
+                if($app_user_device != null){
+                    if($app_user_device->device_id == $request->device_id){
+                        $app_user_device->device_token = $request->device_token;
+                    }
+                    else{
+                        if($app_user_device->device_type == $request->device_type){
+                            $app_user_device->device_id = $request->device_id;
+                            $app_user_device->device_token = $request->device_token;
+                        }
+                        else{
+                            $app_user_device->device_id = $request->device_id;
+                            $app_user_device->device_token = $request->device_token;
+                            $app_user_device->device_type = $request->device_type;
+                        }
+                    }
+                    $app_user_device->save();
+                }
+                else{
+                    return Response::json(['code' => 500, 'status' => false, 'message' => 'Device token not found']);
+                }
                 $token = JWTAuth::fromUser($app_user);
                 $user = $app_user->toArray();
                 $user['token'] = $token;

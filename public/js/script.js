@@ -7,10 +7,12 @@
     // configure your validation
     $("#add_attribute").validate({
         rules: {
-            category_name: { valueNotEquals: "default" }
+            category_name: { valueNotEquals: "default" },
+
         },
         messages: {
             category_name: { valueNotEquals: "Please select an item!" }
+
         },highlight: function (input) {
 
             $(input).parents('.form-line').addClass('error');
@@ -77,7 +79,7 @@
 
 
     });
-    var all_user = {};
+
     $(document).on('change','#basic_checkbox_select_all',function () {
         var selectallVal = $(this).prop('checked');
         if(selectallVal == true){
@@ -94,16 +96,73 @@
         }
     })
 
-    $(document).on('change','particular-me',function () {
-        var particularcheck = $(this).prop('checked');
-        if(selectallVal == true){
-                $(this).prop('checked',true);
-        }
-        else{
-                $(this).prop('checked',false);
-        }
-    });
+    // $(document).on('change','.particular-me',function () {
+    //     var particularcheck = $(this).prop('checked');
+    //     if(selectallVal == true){
+    //             $(this).prop('checked',true);
+    //     }
+    //     else{
+    //             $(this).prop('checked',false);
+    //     }
+    // });
     // $('#basic_checkbox_select_all').change()
+
+    var all_user = [];
+    $(document).on('click','#send-to-selected',function () {
+
+        $('.select-me').each(function (index,value) {
+            var checkprop = $(this).prop('checked')
+            if(checkprop == true){
+                var id = $(this).attr('data-react-id');
+                all_user.push(id);
+            }
+
+        })
+
+
+        if(all_user.length > 0){
+            $('#notify-selected-modal').modal('show');
+        }
+        else {
+            $.notify({
+                    message: 'please select user to send notification'
+                },
+                {
+                    allow_dismiss: true,
+                    newest_on_top: true,
+                    timer: 1000,
+                    placement:{
+                        from: 'top',
+                        align: 'right'
+                    },
+                    animate: {
+                        enter: 'animated rotateOutInRight',
+                        exit: 'animated rotateOutUpRight '
+                    }
+                });
+        }
+ });
+
+
+
+    $(document).on('click','#notify-registered-user',function () {
+            var valid = $("#add_attribute").valid()
+            if(valid){
+                var notification_title = $('#notification_title').val();
+                var notification_body = $('#notification_body').val();
+                $.ajax({
+                    type: "POST",
+                    url: APP_URL + '/notify-selected-users/',
+                    dataType: 'json',
+                    data: {'notification_title':notification_title,'notification_body':notification_body,'users':all_user},
+
+                    success: function(response) {
+                        console.log(response);
+                    }
+
+                });
+            }
+    });
 
 
     $('#btnAdd').click(function() {

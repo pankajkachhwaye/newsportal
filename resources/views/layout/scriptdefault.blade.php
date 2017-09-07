@@ -83,6 +83,12 @@
         $('.js-basic-example').DataTable({
             responsive: true
         });
+        $('.notify-user').dataTable( {
+            responsive: true,
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets': [ 4 ] }
+            ]
+        });
     });
 
 </script>
