@@ -77,6 +77,33 @@
 
 
     });
+    var all_user = {};
+    $(document).on('change','#basic_checkbox_select_all',function () {
+        var selectallVal = $(this).prop('checked');
+        if(selectallVal == true){
+            var selectcheck = $('.select-me');
+            selectcheck.each(function (index,value) {
+                $(this).prop('checked',true);
+            })
+        }
+        else{
+            var selectcheck = $('.select-me');
+            selectcheck.each(function (index,value) {
+                $(this).prop('checked',false);
+            })
+        }
+    })
+
+    $(document).on('change','particular-me',function () {
+        var particularcheck = $(this).prop('checked');
+        if(selectallVal == true){
+                $(this).prop('checked',true);
+        }
+        else{
+                $(this).prop('checked',false);
+        }
+    });
+    // $('#basic_checkbox_select_all').change()
 
 
     $('#btnAdd').click(function() {

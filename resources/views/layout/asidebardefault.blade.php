@@ -101,7 +101,7 @@
                         </li>
                         <li class="{{(isset($sub_page) && $sub_page && $sub_page=='notify-registered-users')?'active':''}}">
                             {{--<a href="{{url('/send-notification-register-user')}}">--}}
-                            <a href="#">
+                            <a href="{{url('send-notification-registered-user')}}">
                                 <span>Register users</span>
                             </a>
 

@@ -49,6 +49,7 @@
 
 <!-- Custom Js -->
 <script src="{{URL::asset('js/admin.js')}}"></script>
+<script src="{{URL::asset('js/pages/forms/basic-form-elements.js')}}"></script>
 <script src="{{URL::asset('js/pages/index.js')}}"></script>
 
 <!-- Demo Js -->

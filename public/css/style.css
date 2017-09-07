@@ -8027,3 +8027,28 @@ html.ie11 .dropdown-menu ul.menu li a {
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
 
+#basic_checkbox_select_all:after{
+  margin-top: 14px;
+}
+
+[type="checkbox"].filled-in:not(:checked) + label:after {
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 2px solid #5a5a5a;
+  top: 0px;
+  z-index: 0;
+}
+
+
+[type="checkbox"].basic_checkbox_select_all + label:before, [type="checkbox"].basic_checkbox_select_all + label:after {
+  margin-top: 14px;
+}
+
+[type="checkbox"]#basic_checkbox_select_all + label:after {
+  margin-top: 14px;
+}
+
+[type="checkbox"]#basic_checkbox_select_all:checked + label:before{
+  top: 14px;
+}

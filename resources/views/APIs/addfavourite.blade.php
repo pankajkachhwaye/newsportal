@@ -8,7 +8,7 @@
 
 <body>
 <h1>
-    URL::   {{url('/').'/api/add-to-favourite-news'}}
+    URL::   {{url('/').'/api/add-remove-favourite-news'}}
 
 </h1>
 <form  method="post"  action=" {{url('/api/add-remove-favourite-news')}}" >

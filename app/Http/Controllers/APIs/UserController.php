@@ -164,7 +164,7 @@ class UserController extends Controller
                 $token = JWTAuth::fromUser($app_user);
                 $user = $app_user->toArray();
                 $user['token'] = $token;
-                return Response::json(['code' => 200, 'status' => true, 'data' => $user]);
+                return Response::json(['code' => 200, 'status' => true,'message' => 'Login successfully' ,'data' => $user]);
             } else {
                 return Response::json(['code' => 200, 'status' => false, 'message' => 'User Password is not match with email address']);
             }

@@ -12,6 +12,7 @@ class VerifyJWTToken
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
+     *
      */
     public function handle($request, Closure $next)
     {
@@ -19,9 +20,9 @@ class VerifyJWTToken
             $user = JWTAuth::toUser($request->input('token'));
         }catch (JWTException $e) {
             if($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
-                return response()->json(['token_expired'], $e->getStatusCode());
+                return response()->json(['code' => 500, 'status' => false,'message'=>'token_expired','data' =>array()], $e->getStatusCode());
             }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
-                return response()->json(['token_invalid'], $e->getStatusCode());
+                return response()->json(['code' => 500, 'status' => false,'message'=>'token_invalid','data' =>array()], $e->getStatusCode());
             }else{
                 return response()->json(['code' => 500, 'status' => false,'message' => 'Token is required','data' =>array()]);
             }

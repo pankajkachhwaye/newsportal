@@ -39,6 +39,7 @@ Route::group(['namespace'=>'Admin'], function(){
     Route::get('/category-by-lang/{id}','AdminController@categoryByLang');
     Route::post('/post-news','AdminController@postNews');
     Route::get('/send-notification-all-user','AdminController@sendNotificationAllUser');
+    Route::get('/send-notification-registered-user','AdminController@sendNotificationRegisteredUser');
     Route::post('/notify-all-users','AdminController@notifAllUsers');
 });
 

@@ -112,4 +112,12 @@ class AdminController extends Controller
         return back()->with('returnStatus', true)->with('status', 101)->with('message','notification send successfully');
 
     }
+
+    public function sendNotificationRegisteredUser(){
+        $page = 'notification';
+        $sub_page = 'notify-registerd-users';
+        $app_users = AppUser::all();
+//        dd($app_users);
+        return view('admin.notifyregisterd',compact('page','sub_page','app_users'));
+    }
 }
