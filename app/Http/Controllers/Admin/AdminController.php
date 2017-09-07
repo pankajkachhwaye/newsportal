@@ -120,7 +120,7 @@ class AdminController extends Controller
             $user_device = $temp_user->deviceInfo;
             if($user_device != null){
                 $user_device->notify(new GenralNotification($request->notification_title, $request->notification_body));
-               $dd =  $this->firebase_notification($device_token,$request->notification_title, $request->notification_body);
+               $notify =  $this->firebase_notification($device_token,$request->notification_title, $request->notification_body);
 
             }
         }
@@ -129,6 +129,7 @@ class AdminController extends Controller
     }
 
     public function sendNotificationRegisteredUser(){
+
         $page = 'notification';
         $sub_page = 'notify-registerd-users';
         $app_users = AppUser::all();
