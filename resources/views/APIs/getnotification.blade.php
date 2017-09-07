@@ -15,6 +15,9 @@
 
     <br>
     Token(token) ::*<input type="text"  name="token" >
+    <br>
+    <br>
+    Device Id(device_id) ::*<input type="text"  name="device_id" >
 
 
     <br>

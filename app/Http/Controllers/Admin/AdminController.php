@@ -114,11 +114,14 @@ class AdminController extends Controller
     }
 
     public function notifySelectedUsers(Request $request){
+        $device_token = 'asdadd';
         foreach ($request->users as $key_user => $value_user){
             $temp_user = AppUser::find($value_user);
             $user_device = $temp_user->deviceInfo;
             if($user_device != null){
                 $user_device->notify(new GenralNotification($request->notification_title, $request->notification_body));
+               $dd =  $this->firebase_notification($device_token,$request->notification_title, $request->notification_body);
+
             }
         }
         return Response::json(['code' => 200, 'status' => true, 'message' => 'notification send successfully to selected users']);
@@ -134,94 +137,49 @@ class AdminController extends Controller
     }
 
 
-    public function firebase_notification($device_type,$device_token,$title,$body){
+    public function firebase_notification($device_token,$title,$body){
+        $ch = curl_init("https://fcm.googleapis.com/fcm/send");
 
-        define("TAG", "0");
-        $date = date('Y-m-d');
-        $current_date= strtotime($date);
-        $server_key = 	'AAAAN1pXap0:APA91bGolaXhXdz-gH74YVIGtM5lryB67HxZpKtayOmfD7JFSv2dnaGjLdJJJ2ezzeLBN1hWCww23dQIxlsPT-YX9fytENzNrLBLUip4hNgrPMYcxwGK5quYL2TDggzv_FvoUPAiA2gU';
-        $url = 'https://fcm.googleapis.com/fcm/send';
-        if($device_type=='android')
-        {
+        //The device token.
+        /*$token = "eA-RyGHUo38:APA91bE_Giwf5lGGH87syUFLy__NS8g_YYR8W2LWp9hvss_gnTlDCkrHZekz44pI_6LZU0G1dJ4JUO5bDm6J_U6TsOgQqd4MzsUN37EP-JKA2NdonXIvjCrAPNz3Ui6xwPPbt608jltI";*/
+        $token = "f4F6s4ddX6c:APA91bEXKP2WvRYbFBkShN_KUCIHhnP9Nquo31wm611gA772N8SwtXyj9Qs2g-JaVkMiHOoivHgUNLy1in1FhUjyApyMiwCvmxF8LHH4bw2-N0cszFTTIOERYz-kBKd1jYWnOQBgpWVa";
 
-            /*$id1='deeSDmxSi50:APA91bHNawMFOeafW6TDD3xKfgnEP0rKZpLOJjYIiVdE5zMxK2seKoc8rPnqzcbuc25ASKNTUm73kvUUbD_ElB07Z_VDUhv3a7Cr-8390Q8AAhErXJKIc8qxeBulv3vx7bdXldh0Dj85';*/
-            $fields = array (
-                'registration_ids' => array($device_token),
-                'data' => array( "title" =>  $title,
-                    "body" =>  $body,
-                    "type"=>TAG
-                ),
+        //Title of the Notification.
+        $title = $title;
 
-                'notification' => array( "body" =>  $body,
-                    "title" => $title,
-                    "icon"=>"icon",
-                    "tag"=>TAG
-                )
-            );
-            //header with content_type api key
-            $headers = array('Content-Type:application/json',
-                'Authorization:key='.$server_key);
+        //Body of the Notification.
+        $body = $body;
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
-            $result = curl_exec($ch);
-            // print_r($result);
-            if ($result == FALSE) {
-                die('FCM Send Error: ' . curl_error($ch));
-            }
-            curl_close($ch);
-            print_r($result);
-        }
+        //Creating the notification array.
+        $notification = array('title' =>$title , 'text' => $body);
+
+        //This array contains, the token and the notification. The 'to' attribute stores the token.
+        $arrayToSend = array('to' => $token, 'notification' => $notification);
+        //Generating JSON encoded string form the above array.
+        $json = json_encode($arrayToSend);
+
+        //Setup headers:
+        $headers = array();
+        $headers[] = 'Content-Type: application/json';
+
+        //behindbar
+        //$headers[] = 'Authorization: key= AAAANYa3Tpo:APA91bFFgq6p2EqPi2OPhNFYdHChomOILYJr4mqbPGQANq5w6axeEZwojxfkL0Iyknsvte825OgjfhyJ7dnIMVOzS7uRMqE502y0amwipgpw6GM5yeQAilUUgiCASrvkYpc8vwNj9EQk'; //server key here
 
 
-        else if($device_type=='ios'){
+        //poochplay
+        $headers[] = 'Authorization: key= AAAA1IfBAQ0:APA91bFX9FPXGiNOL_Cz1rVXTYE5XoH6W2tGh34ckHR20obSTxC817IJ-8ByCblisB2NYGmV12CZb1ACMA55n_i2Yh-phZEV7VZuj513uYhd8rU_Tv170v2HedpB97G41K9ZPEafTVO8'; //server key here
 
+        //Setup curl, add headers and post parameters.
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
 
-            $tokens = array($device_token);
+        //Send the request
+        $response = curl_exec($ch);
 
-            //Title of the Notification.
-            $title = $title;
-
-            //Body of the Notification.
-            $body = "this is behindbars app";
-
-            //Creating the notification array.
-            $notification = array('title' =>$title , 'text' => $body);
-
-            //This array contains, the token and the notification. The 'to' attribute stores the token.
-            $arrayToSend = array('registration_ids' => $tokens, 'notification' => $notification,'priority'=>'high');
-
-            //Generating JSON encoded string form the above array.
-            $json = json_encode($arrayToSend);
-            //Setup headers:
-            $headers = array();
-            $headers[] = 'Content-Type: application/json';
-            $headers[] = 'Authorization: key='. $server_key; // key here
-
-            $ch = curl_init();
-            curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
-            curl_setopt( $ch,CURLOPT_POST, true );
-            curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
-            curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-            curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
-
-            //Send the request
-            $response = curl_exec($ch);
-            //print_r($arrayToSend);
-            //Close request
-            curl_close($ch);
-
-
-            echo "pre";
-            print_r($response);
-        }
+        //Close request
+        curl_close($ch);
+        return $response;
 
     }
 }

@@ -294,27 +294,48 @@ class UserController extends Controller
 
 
     public function getAllNotifications(Request $request){
-        $user = $this->getAuthUserByToken($request->token);
+        if($request->token == null){
+            $device = DeviceInfo::where('device_id',$request->device_id)->first();
+            $notifications = $device->notifications->toArray();
+            if(count($notifications) > 0){
+                $temp_notification = [];
+                foreach ($notifications as $key_notify => $value_notify){
+                    $value_notify['data']['created_at'] = $value_notify['created_at'];
+                    array_push($temp_notification,$value_notify['data']);
+                }
 
-        if($user->count() > 0){
-          $user_device = $user->deviceInfo;
-
-          $notifications = $user_device->notifications->toArray();
-//        dd($notifications);
-          if(count($notifications) > 0){
-              $temp_notification = [];
-              foreach ($notifications as $key_notify => $value_notify){
-               $value_notify['data']['created_at'] = $value_notify['created_at'];
-               array_push($temp_notification,$value_notify['data']);
-              }
-
-              return Response::json(['code' => 200, 'status' => true,'message' => 'News found in favourite list','data' =>$temp_notification]);
-          }
-          else{
-              return Response::json(['code' => 200, 'status' => false,'message' => 'No notification found','data' =>array()]);
-          }
-
+                return Response::json(['code' => 200, 'status' => true,'message' => 'News found in favourite list','data' =>$temp_notification]);
+            }
+            else{
+                return Response::json(['code' => 200, 'status' => false,'message' => 'No notification found','data' =>array()]);
+            }
         }
+        else{
+            $user = $this->getAuthUserByToken($request->token);
+            if($user->count() > 0){
+                $user_device = $user->deviceInfo;
+
+                $notifications = $user_device->notifications->toArray();
+//        dd($notifications);
+                if(count($notifications) > 0){
+                    $temp_notification = [];
+                    foreach ($notifications as $key_notify => $value_notify){
+                        $value_notify['data']['created_at'] = $value_notify['created_at'];
+                        array_push($temp_notification,$value_notify['data']);
+                    }
+
+                    return Response::json(['code' => 200, 'status' => true,'message' => 'News found in favourite list','data' =>$temp_notification]);
+                }
+                else{
+                    return Response::json(['code' => 200, 'status' => false,'message' => 'No notification found','data' =>array()]);
+                }
+
+            }
+        }
+
+
+
+
     }
 
 

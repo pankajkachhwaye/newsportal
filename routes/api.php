@@ -23,9 +23,10 @@ Route::group(['namespace'=>'APIs','middleware' => 'jwt.auth'], function () {
     Route::get('user', 'UserController@getAuthUser');
     Route::post('like-news', 'UserController@likeNews');
     Route::post('add-remove-favourite-news', 'UserController@addToFavouriteNews');
-    Route::post('get-all-notifications', 'UserController@getAllNotifications');
+
     Route::post('/get-favourite-news','UserController@getFavouriteNews');
 });
+
 
 Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
 
@@ -63,6 +64,7 @@ Route::group(['namespace'=>'APIs'],function(){
     Route::get('/categories','WebServicesController@categories');
     Route::post('/subcategories','WebServicesController@subcategories');
     Route::post('/forgot-password','WebServicesController@forgotPassword');
+    Route::post('get-all-notifications', 'UserController@getAllNotifications');
 
 
 });
