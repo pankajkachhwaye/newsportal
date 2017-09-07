@@ -86,5 +86,9 @@ class ApiPanelController extends Controller
         return view('APIs.forgotpassword' );
     }
 
+    public function showAllLanguagesForm(){
+        return view('APIs.alllanguaugeform' );
+    }
+
 }
 

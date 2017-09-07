@@ -44,6 +44,7 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
     Route::get('/get-favourite-news-form','ApiPanelController@showGetFavrouiteNewsForm');
     Route::get('/get-all-notifications-form','ApiPanelController@showGetAllNotificationsForm');
     Route::get('/forgot-password-form','ApiPanelController@showForgoFasswordForm');
+    Route::get('/all-languages-form','ApiPanelController@showAllLanguagesForm');
 
 
 });
@@ -55,7 +56,7 @@ Route::group(['namespace'=>'APIs'],function(){
 
     Route::post('/register-app-user','UserController@registerAppUser');
     Route::post('/login-app-user','UserController@loginAppUser');
-    Route::get('/all-languages','WebServicesController@allLanguages');
+    Route::post('/all-languages','WebServicesController@allLanguages');
     Route::post('/categories-by-language','WebServicesController@categoryByLanguage');
     Route::post('/news','WebServicesController@getNews');
     Route::post('/related-news','WebServicesController@relatedNews');

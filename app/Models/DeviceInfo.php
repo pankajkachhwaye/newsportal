@@ -13,4 +13,14 @@ class DeviceInfo extends Model
     public function userInfo(){
         return $this->belongsTo('App\Models\AppUser','app_user_id');
     }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
+
+    public function getAppUserIdAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
 }

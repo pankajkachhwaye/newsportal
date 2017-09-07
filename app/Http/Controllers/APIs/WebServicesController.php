@@ -4,7 +4,9 @@ namespace App\Http\Controllers\APIs;
 
 use App\Models\AppUser;
 use App\Models\Category;
+use App\Models\DeviceInfo;
 use App\Models\News;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Categories;
@@ -51,8 +53,22 @@ class WebServicesController extends Controller
     /**
      * @return mixed
      */
-    public function allLanguages()
+    public function allLanguages(Request $request)
     {
+        $device_array = [
+            'device_id' => $request->device_id,
+            'device_token' => $request->device_token,
+            'device_type' => $request->device_type,
+        ];
+            $check = DeviceInfo::where('device_id',$request->device_id)->first();
+             if($check == null){
+                 $device_array['created_at'] = Carbon::now();
+                DeviceInfo::insert($device_array);
+            }
+            else{
+                $device_array['updated_at'] = Carbon::now();
+                DeviceInfo::where('device_id',$request->device_id)->update($device_array);
+            }
         $laguages = Language::all()->toArray();
         if (count($laguages) > 0)
             return Response::json(['code' => 200, 'status' => true, 'message' => 'Data Found', 'data' => $laguages]);
