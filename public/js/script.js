@@ -152,7 +152,7 @@
                 var notification_body = $('#notification_body').val();
                 $.ajax({
                     type: "POST",
-                    url: APP_URL + '/notify-selected-users/',
+                    url: APP_URL + '/notify-selected-users',
                     dataType: 'json',
                     data: {'notification_title':notification_title,'notification_body':notification_body,'users':all_user},
 

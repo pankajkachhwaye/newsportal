@@ -143,7 +143,7 @@ class AdminController extends Controller
 
         //The device token.
         /*$token = "eA-RyGHUo38:APA91bE_Giwf5lGGH87syUFLy__NS8g_YYR8W2LWp9hvss_gnTlDCkrHZekz44pI_6LZU0G1dJ4JUO5bDm6J_U6TsOgQqd4MzsUN37EP-JKA2NdonXIvjCrAPNz3Ui6xwPPbt608jltI";*/
-        $token = "f4F6s4ddX6c:APA91bEXKP2WvRYbFBkShN_KUCIHhnP9Nquo31wm611gA772N8SwtXyj9Qs2g-JaVkMiHOoivHgUNLy1in1FhUjyApyMiwCvmxF8LHH4bw2-N0cszFTTIOERYz-kBKd1jYWnOQBgpWVa";
+        $token = "eA-RyGHUo38:APA91bE_Giwf5lGGH87syUFLy__NS8g_YYR8W2LWp9hvss_gnTlDCkrHZekz44pI_6LZU0G1dJ4JUO5bDm6J_U6TsOgQqd4MzsUN37EP-JKA2NdonXIvjCrAPNz3Ui6xwPPbt608jltI";
 
         //Title of the Notification.
         $title = $title;
