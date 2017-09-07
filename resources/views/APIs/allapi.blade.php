@@ -29,6 +29,7 @@
         <p><a href="{{url('/api/Allapi/add-favourite-news-form')}}">Add - To - Favourite - News</a></p>
         <p><a href="{{url('/api/Allapi/get-favourite-news-form')}}">Get - Favourite - News</a></p>
         <p><a href="{{url('/api/Allapi/get-all-notifications-form')}}">Get - All - Notifications</a></p>
+        <p><a href="{{url('/api/Allapi/forgot-password-form')}}">Forgot - Password</a></p>
 
         {{--<p><a href="{{url('/api/Allapi/categories')}}">categories</a></p>--}}
         {{--<p><a href="{{url('/api/Allapi/subcategories')}}">Subcategories</a></p>--}}

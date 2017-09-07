@@ -79,9 +79,12 @@ class ApiPanelController extends Controller
     }
 
     public function showGetAllNotificationsForm(){
-        return view('APIs.getnotification' );
+
     }
 
+    public function showForgoFasswordForm(){
+        return view('APIs.forgotpassword' );
+    }
 
 }
 

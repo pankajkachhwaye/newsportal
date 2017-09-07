@@ -29,7 +29,8 @@ class UserController extends Controller
             'email' => $data['email'],
             'mobile_no' => $data['mobile_no'],
             'password' => bcrypt($data['password']),
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+             'login_with' => $data['login_with']
         ]);
     }
 
@@ -44,7 +45,8 @@ class UserController extends Controller
             'full_name' => $data['full_name'],
             'email' => $data['email'],
             'mobile_no' => $data['mobile_no'],
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'login_with' => $data['login_with']
         ]);
     }
 
@@ -93,6 +95,7 @@ class UserController extends Controller
                    'full_name' => $request->full_name,
                    'email' => $request->email,
                    'mobile_no' => $request->mobile_no,
+                   'login_with' => $request->login_with,
 
                 ];
                 $usertemp = $this->createAppUserWithoutPass($user_array);
@@ -103,6 +106,7 @@ class UserController extends Controller
                     'email' => $request->email,
                     'mobile_no' => $request->mobile_no,
                     'password' => $request->password,
+                    'login_with' => $request->login_with,
                 ];
                 $usertemp = $this->createAppUserWithPass($user_array);
             }

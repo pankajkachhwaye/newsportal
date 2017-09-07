@@ -14,7 +14,7 @@
 <form  method="post"  action=" {{url('/api/forgot-password')}}" >
 
     <br>
-    Token(token) ::*<input type="text"  name="token" >
+    Email/Mobile(value) ::*<input type="text"  name="value" >
 
 
     <br>

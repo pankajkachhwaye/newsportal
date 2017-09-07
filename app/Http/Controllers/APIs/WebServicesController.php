@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\APIs;
 
+use App\Models\AppUser;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -11,7 +12,10 @@ use App\SubCategories;
 use App\deal;
 use Illuminate\Support\Facades\DB;
 use App\Models\Language;
+use Illuminate\Support\Facades\Mail;
 use Response;
+use App\Mail\ForgotPassword;
+
 
 class WebServicesController extends Controller
 {
@@ -22,12 +26,11 @@ class WebServicesController extends Controller
     public function categories()
     {
         //        echo "cate";
-        $data=Categories::all()->toArray();
+        $data = Categories::all()->toArray();
 
-        $i=0;
-        foreach ($data as $v)
-        {
-            $data[$i]['news_image']= asset('storage/'.$v['categories_image']);
+        $i = 0;
+        foreach ($data as $v) {
+            $data[$i]['news_image'] = asset('storage/' . $v['categories_image']);
             $i++;
         }
         echo json_encode($data);
@@ -39,8 +42,8 @@ class WebServicesController extends Controller
     public function subcategories(Request $request)
     {
         // echo "subcat";
-       $data= SubCategories::where('cat_id',$request->cat_id )->get();
-        $data=$data->toArray();
+        $data = SubCategories::where('cat_id', $request->cat_id)->get();
+        $data = $data->toArray();
         echo json_encode($data);
 
     }
@@ -48,12 +51,13 @@ class WebServicesController extends Controller
     /**
      * @return mixed
      */
-    public function allLanguages(){
+    public function allLanguages()
+    {
         $laguages = Language::all()->toArray();
-        if(count($laguages) > 0)
-            return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found','data' =>$laguages]);
+        if (count($laguages) > 0)
+            return Response::json(['code' => 200, 'status' => true, 'message' => 'Data Found', 'data' => $laguages]);
         else
-            return Response::json(['code' => 500, 'status' => true,'message' => 'Data not Found','data' =>array()]);
+            return Response::json(['code' => 500, 'status' => true, 'message' => 'Data not Found', 'data' => array()]);
 
     }
 
@@ -62,20 +66,20 @@ class WebServicesController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function categoryByLanguage(Request $request){
+    public function categoryByLanguage(Request $request)
+    {
 
         $temp_categories = Category::GetCategoryByLang($request->language_id)->get();
-        if($temp_categories->count() > 0){
-          $categories =   $temp_categories->toArray();
-          $categoriesArray = [];
-          foreach ($categories as $key_cate => $value_cate){
-              $value_cate['category_icon'] =   asset('storage/'.$value_cate['category_icon']);
-            array_push($categoriesArray,$value_cate);
-          }
-            return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found.','data' =>$categoriesArray]);
-        }
-        else{
-            return Response::json(['code' => 500, 'status' => false,'message' => 'No category found in this language.','data' =>array()]);
+        if ($temp_categories->count() > 0) {
+            $categories = $temp_categories->toArray();
+            $categoriesArray = [];
+            foreach ($categories as $key_cate => $value_cate) {
+                $value_cate['category_icon'] = asset('storage/' . $value_cate['category_icon']);
+                array_push($categoriesArray, $value_cate);
+            }
+            return Response::json(['code' => 200, 'status' => true, 'message' => 'Data Found.', 'data' => $categoriesArray]);
+        } else {
+            return Response::json(['code' => 500, 'status' => false, 'message' => 'No category found in this language.', 'data' => array()]);
         }
     }
 
@@ -83,52 +87,49 @@ class WebServicesController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function getNews(Request $request){
+    public function getNews(Request $request)
+    {
 //        dd($request->all());
-        if($request->top_news == 0 && $request->recommended_news == 0 && $request->cat_id != ''){
+        if ($request->top_news == 0 && $request->recommended_news == 0 && $request->cat_id != '') {
             $temp_news = News::GetNewsByCat($request->cat_id)->get();
 
         }
-        if($request->top_news != 0 && $request->recommended_news == 0 && $request->cat_id == ''){
-            $temp_news = News::GetNewsByCreatedAt($request->language)->orderBy('created_at' ,'desc')->take(3)->get();
+        if ($request->top_news != 0 && $request->recommended_news == 0 && $request->cat_id == '') {
+            $temp_news = News::GetNewsByCreatedAt($request->language)->orderBy('created_at', 'desc')->take(3)->get();
         }
-        if($request->top_news == 0 && $request->recommended_news != 0 && $request->cat_id == ''){
-            $temp_news = News::GetNewsByLike($request->language)->orderBy('like' ,'desc')->take(2)->get();
+        if ($request->top_news == 0 && $request->recommended_news != 0 && $request->cat_id == '') {
+            $temp_news = News::GetNewsByLike($request->language)->orderBy('like', 'desc')->take(2)->get();
         }
 
-        if($temp_news->count() > 0){
-                $news = [];
-            foreach ($temp_news as $key_news => $value_news){
-                    $x = $value_news->toArray();
+        if ($temp_news->count() > 0) {
+            $news = [];
+            foreach ($temp_news as $key_news => $value_news) {
+                $x = $value_news->toArray();
                 $created = new \Carbon\Carbon($value_news->created_at);
-                $x['created'] =$created->diffForHumans();
+                $x['created'] = $created->diffForHumans();
 
 
-                    $newsimages = $value_news->newsImage()->get()->toArray();
+                $newsimages = $value_news->newsImage()->get()->toArray();
 //                        dd($newsimages);
-                     if(count($newsimages) > 0){
-                         $x['image'] =  asset('storage/'.$newsimages[0]['news_image']);
-                     }
-
-                     else
-                         {
-                             $x['image'] = '';
+                if (count($newsimages) > 0) {
+                    $x['image'] = asset('storage/' . $newsimages[0]['news_image']);
+                } else {
+                    $x['image'] = '';
 
 
-                         }
+                }
 
                 $x['newsImage'] = [];
-                     foreach ($newsimages as $key_img => $value_img){
-                      array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
-                    }
+                foreach ($newsimages as $key_img => $value_img) {
+                    array_push($x['newsImage'], asset('storage/' . $value_img['news_image']));
+                }
 
-                    array_push($news,$x);
+                array_push($news, $x);
 
             }
-            return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found.','data' =>$news]);
-        }
-        else{
-            return Response::json(['code' => 500, 'status' => false,'message' => 'No News is found write now.','data' =>array()]);
+            return Response::json(['code' => 200, 'status' => true, 'message' => 'Data Found.', 'data' => $news]);
+        } else {
+            return Response::json(['code' => 500, 'status' => false, 'message' => 'No News is found write now.', 'data' => array()]);
         }
 
     }
@@ -138,42 +139,119 @@ class WebServicesController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function relatedNews(Request $request){
+    public function relatedNews(Request $request)
+    {
 
-            $temp_news = News::GetNewsByCreatedAt($request->language_id)->GetNewsByCat($request->cat_id)->orderBy('created_at' ,'desc')->take(3)->get();
+        $temp_news = News::GetNewsByCreatedAt($request->language_id)->GetNewsByCat($request->cat_id)->orderBy('created_at', 'desc')->take(3)->get();
 
-         if($temp_news->count() > 0){
+        if ($temp_news->count() > 0) {
             $news = [];
-            foreach ($temp_news as $key_news => $value_news){
+            foreach ($temp_news as $key_news => $value_news) {
                 $x = $value_news->toArray();
                 $created = new \Carbon\Carbon($value_news->created_at);
-                $x['created'] =$created->diffForHumans();
+                $x['created'] = $created->diffForHumans();
                 $newsimages = $value_news->newsImage()->get()->toArray();
-                if(count($newsimages) > 0)
-                    $x['image'] =  asset('storage/'.$newsimages[0]['news_image']);
+                if (count($newsimages) > 0)
+                    $x['image'] = asset('storage/' . $newsimages[0]['news_image']);
                 else
                     $x['image'] = '';
 
                 $x['newsImage'] = [];
-                foreach ($newsimages as $key_img => $value_img){
-                    array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
+                foreach ($newsimages as $key_img => $value_img) {
+                    array_push($x['newsImage'], asset('storage/' . $value_img['news_image']));
                 }
 
-                array_push($news,$x);
+                array_push($news, $x);
 
             }
-            return Response::json(['code' => 200, 'status' => true,'message' => 'Data Found.','data' =>$news]);
+            return Response::json(['code' => 200, 'status' => true, 'message' => 'Data Found.', 'data' => $news]);
+        } else {
+            return Response::json(['code' => 500, 'status' => false, 'message' => 'No News is found write now.', 'data' => array()]);
+        }
+
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        if (is_numeric($request->value)) {
+            $app_user = AppUser::where('mobile_no',$request->value)->first();
+
+        } else {
+            $app_user = AppUser::whereEmail($request->value)->first();
+        }
+
+        if($app_user == null){
+            return Response::json(['code' => 500, 'status' => false, 'message' => 'User is not registered with us.', 'data' => array()]);
         }
         else{
-            return Response::json(['code' => 500, 'status' => false,'message' => 'No News is found write now.','data' =>array()]);
+            $password = str_random(8);
+            $app_user->password = bcrypt($password);
+            $app_user->save();
+            if($app_user->mobile_no != null){
+                $this->send_opt_mobile($app_user->mobile_no,$password);
+            }
+            Mail::to($app_user->email)->send(new ForgotPassword($app_user,$password));
+            if (count(Mail::failures()) == 0) {
+                return Response::json(['code' => 200, 'status' => true, 'message' => 'New Password has been send to register email and mobile no. address.','data' => array()]);
+            }
+        }
+    }
+
+
+    function send_opt_mobile($mobile, $password)
+    {
+        $authKey = "84215Aeu0Yhfnyc55470221";
+
+        //Multiple mobiles numbers separated by comma
+        $mobileNumber = $mobile;
+
+        //Sender ID,While using route4 sender id should be 6 characters long.
+        $senderId = "NEWPRT";
+
+        //Your message to send, Add URL encoding here.
+        $message = urlencode("News Portal your new password is $password");
+
+        //Define route
+        $route = "4";
+        //Prepare you post parameters
+        $postData = array(
+            'authkey' => $authKey,
+            'mobiles' => $mobileNumber,
+            'message' => $message,
+            'sender' => $senderId,
+            'route' => $route
+        );
+
+        //API URL
+        $url="https://api.msg91.com/api/sendhttp.php?authkey='$authKey'&mobiles='$mobileNumber'&message='$message'&sender='$senderId'&route=4&country=91";
+
+
+        // init the resource
+        $ch = curl_init();
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $postData
+            //,CURLOPT_FOLLOWLOCATION => true
+        ));
+
+
+        //Ignore SSL certificate verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+
+        //get response
+        $output = curl_exec($ch);
+
+        //Print error if any
+        if(curl_errno($ch))
+        {
+            echo 'error:' . curl_error($ch);
         }
 
+        curl_close($ch);
     }
-
-    public function forgotPassword(Request $request){
-
-    }
-
-
 
 }

@@ -42,6 +42,7 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
     Route::get('/add-favourite-news-form','ApiPanelController@showAddFavrouiteNewsForm');
     Route::get('/get-favourite-news-form','ApiPanelController@showGetFavrouiteNewsForm');
     Route::get('/get-all-notifications-form','ApiPanelController@showGetAllNotificationsForm');
+    Route::get('/forgot-password-form','ApiPanelController@showForgoFasswordForm');
 
 
 });

@@ -35,6 +35,16 @@ class AppUser extends Model
         return ($value == null ? '':$value);
     }
 
+    public function getLoginWithAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
+
+    public function getMobileNoAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
+
     public function userFavourite(){
        return $this->hasMany('App\Models\Favourite','user_id');
     }
