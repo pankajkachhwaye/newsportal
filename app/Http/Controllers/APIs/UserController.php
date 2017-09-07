@@ -133,6 +133,7 @@ class UserController extends Controller
                 DeviceInfo::insert($device_array);
             }
             $app_user = AppUser::find($usertemp);
+            $device_info = $app_user->deviceInfo;
             $user = $app_user->toArray();
 
              $token = JWTAuth::fromUser($app_user);
