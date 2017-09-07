@@ -102,11 +102,13 @@ class AdminController extends Controller
     }
 
     public function notifAllUsers(Request $request){
+        $device_token = 'asdadd';
         $devices = DeviceInfo::all();
 
         foreach ($devices as $key_device => $value_device){
 
             $value_device->notify(new GenralNotification($request->notification_title, $request->notification_body));
+            $notify =  $this->firebase_notification($value_device->device_token,$request->notification_title, $request->notification_body);
         }
 
         return back()->with('returnStatus', true)->with('status', 101)->with('message','notification send successfully');
@@ -114,13 +116,12 @@ class AdminController extends Controller
     }
 
     public function notifySelectedUsers(Request $request){
-        $device_token = 'asdadd';
         foreach ($request->users as $key_user => $value_user){
             $temp_user = AppUser::find($value_user);
             $user_device = $temp_user->deviceInfo;
             if($user_device != null){
                 $user_device->notify(new GenralNotification($request->notification_title, $request->notification_body));
-               $notify =  $this->firebase_notification($device_token,$request->notification_title, $request->notification_body);
+               $notify =  $this->firebase_notification($user_device->device_token,$request->notification_title, $request->notification_body);
 
             }
         }
@@ -143,7 +144,7 @@ class AdminController extends Controller
 
         //The device token.
         /*$token = "eA-RyGHUo38:APA91bE_Giwf5lGGH87syUFLy__NS8g_YYR8W2LWp9hvss_gnTlDCkrHZekz44pI_6LZU0G1dJ4JUO5bDm6J_U6TsOgQqd4MzsUN37EP-JKA2NdonXIvjCrAPNz3Ui6xwPPbt608jltI";*/
-        $token = "eA-RyGHUo38:APA91bE_Giwf5lGGH87syUFLy__NS8g_YYR8W2LWp9hvss_gnTlDCkrHZekz44pI_6LZU0G1dJ4JUO5bDm6J_U6TsOgQqd4MzsUN37EP-JKA2NdonXIvjCrAPNz3Ui6xwPPbt608jltI";
+        $token = $device_token;
 
         //Title of the Notification.
         $title = $title;
