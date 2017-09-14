@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Send notification to all user
+                                Send notification to registered user
                             </h2>
 
                         </div>
@@ -103,7 +103,7 @@
                                 <div class="header">
                                     <div class="row clearfix">
                                         <div class="col-xs-12 col-sm-6">
-                                            <h3>Send notification to selected user</h3>
+                                            <h3>Send notification to registered user</h3>
                                         </div>
                                     </div>
                                 </div>

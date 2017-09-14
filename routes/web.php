@@ -33,11 +33,17 @@ Route::post('/fileupload/store','MerchantController@fileupload_store');
 Route::group(['namespace'=>'Admin'], function(){
     Route::get('/add-language','AdminController@addLanguageForm');
     Route::post('/post-language','AdminController@postLanguage');
+    Route::get('/edit-language/{lang_id}','AdminController@editLanguageForm');
+    Route::get('/delete-language/{lang_id}','AdminController@deleteLanguage');
+    Route::post('/update-language','AdminController@updateLanguage');
     Route::get('/add-news','AdminController@addNewsForm');
     Route::get('/show-news','AdminController@showNews');
+    Route::get('/edit-news/{news_id}','AdminController@editNews');
     Route::get('/delete-news/{id}','AdminController@deleteNews');
+    Route::get('/delete-news-image/{id}','AdminController@deleteNewsImage');
     Route::get('/category-by-lang/{id}','AdminController@categoryByLang');
     Route::post('/post-news','AdminController@postNews');
+    Route::post('/update-news','AdminController@updateNews');
     Route::get('/send-notification-all-user','AdminController@sendNotificationAllUser');
     Route::get('/send-notification-registered-user','AdminController@sendNotificationRegisteredUser');
     Route::post('/notify-all-users','AdminController@notifAllUsers');
@@ -49,6 +55,7 @@ Route::get('/add','CategoriesController@add');
 Route::post('store','CategoriesController@store');
 Route::get('show','CategoriesController@show');
 Route::get('edit/{id}','CategoriesController@edit');
+Route::get('delete/{id}','CategoriesController@delete');
 Route::post('editstore','CategoriesController@editstore');
 });
 

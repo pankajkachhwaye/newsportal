@@ -59,21 +59,39 @@ class CategoriesController extends Controller
     }
     public function delete($id)
     {
-        dd($id);
-
+        $cat = Category::find($id);
+        $cat->delete();
+        return back()->with('returnStatus', true)->with('status', 101)->with('message','Category deleted successfully');
     }
     public function edit($id)
     {
-        echo $id;
-        $categorie=new Categories();
-        $data=$categorie->where('id',$id)
-            ->get()->toArray();
-        return view('editcategories',compact("data"));
+        $page = 'category';
+        $sub_page = 'category-show';
+        $category= Category::find($id);
+        $language = $category->language;
+        $category->language_name = $language->language_name;
+
+
+        return view('editcategories',compact("category",'page','sub_page'));
 
     }
     public function editstore(Request $request)
     {
-        $request->toArray();
+
+
+        $categorie= Category::find($request->id);
+
+        $categorie->category_name= $request->category_name;
+        $categorie->language_id= $request->language_id;
+
+        if(isset($request->category_icon)){
+            $categories_image= $request->category_icon;
+            $ext = $categories_image->getClientOriginalExtension();
+            $path= Storage::putFileAs('categories', $categories_image, time().$categorie->category_icon.".".$ext);('');
+            $categorie->category_icon=$path;
+        }
+         $categorie->save();
+        return redirect('Categories/show')->with('returnStatus', true)->with('status', 101)->with('message', 'Category updated successfully');
 
     }
 }

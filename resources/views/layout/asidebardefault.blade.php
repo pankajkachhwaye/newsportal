@@ -2,28 +2,28 @@
     <!-- Left Sidebar -->
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
-        <div class="user-info">
-            <div class="image">
-                <img src="images/user.png" width="48" height="48" alt="User" />
-            </div>
-            <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  {{ Auth::user()->name }}</div>
-                <div class="email">  {{ Auth::user()->email }}</div>
-                <div class="btn-group user-helper-dropdown">
-                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                <i class="material-icons">input</i>Sign Out</a></li>
+        {{--<div class="user-info">--}}
+            {{--<div class="image">--}}
+                {{--<img src="images/user.png" width="48" height="48" alt="User" />--}}
+            {{--</div>--}}
+            {{--<div class="info-container">--}}
+                {{--<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  {{ Auth::user()->name }}</div>--}}
+                {{--<div class="email">  {{ Auth::user()->email }}</div>--}}
+                {{--<div class="btn-group user-helper-dropdown">--}}
+                    {{--<i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>--}}
+                    {{--<ul class="dropdown-menu pull-right">--}}
+                        {{--<li><a href="{{ route('logout') }}"--}}
+                               {{--onclick="event.preventDefault();--}}
+                                                     {{--document.getElementById('logout-form').submit();">--}}
+                                {{--<i class="material-icons">input</i>Sign Out</a></li>--}}
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </ul>
-                </div>
-            </div>
-        </div>
+                        {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+                            {{--{{ csrf_field() }}--}}
+                        {{--</form>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <!-- #User Info -->
         <!-- Menu -->
         <div class="menu">
@@ -99,10 +99,10 @@
                                 <span>All users</span>
                             </a>
                         </li>
-                        <li class="{{(isset($sub_page) && $sub_page && $sub_page=='notify-registered-users')?'active':''}}">
+                        <li class="{{(isset($sub_page) && $sub_page && $sub_page=='notify-registered-users') ? 'active':''}}">
                             {{--<a href="{{url('/send-notification-register-user')}}">--}}
                             <a href="{{url('send-notification-registered-user')}}">
-                                <span>Register users</span>
+                                <span>Registered users</span>
                             </a>
 
                 </li>
@@ -112,7 +112,17 @@
                         <span>Languages</span>
                     </a>
                 </li>--}}
+
             </ul>
+                <li  class="{{(isset($page) && $page && $page=='sign-out')?'active':''}}">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="material-icons">input</i>
+                        <span>Sign Out</span>
+                    </a>
+                </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
         </div>
         <!-- #Menu -->
         <!-- Footer -->

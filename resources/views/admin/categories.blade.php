@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Add New Categories
+                                Add New Category
                             </h2>
 
                         </div>
@@ -45,7 +45,7 @@
 
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Categories Name</label>
+                                        <label for="email_address_2">Category Name</label>
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
@@ -58,7 +58,7 @@
 
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="password_2"> Categories Image</label>
+                                        <label for="password_2"> Category Image</label>
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">

@@ -89,8 +89,9 @@ class CrudRepository
         foreach ($data as $key_img =>$value_img){
             $random = str_random(5);
             $ext = $value_img->getClientOriginalExtension();
-            if($ext != 'jpg' || $ext != 'png' || $ext != 'jpeg' || $ext !='gif'){
-                return ['code' => 101, 'message' => 'News Added Successfully'];
+            $ext_array = ['jpg','png','jpeg','gif'];
+            if(!in_array($ext, $ext_array)){
+                return ['code' => 101, 'message' => 'wrong file format please select correct file format.'];
             }
             $path= Storage::putFileAs('news_Image', $value_img, time().$cat_id.$random.".".$ext);
             $temp_data = [
@@ -102,6 +103,76 @@ class CrudRepository
             $insert_img = NewsImage::insert($temp_data);
         }
         return ['code' => 101, 'message' => 'News Added Successfully'];
+
+    }
+
+    public function updateNews($data){
+        unset($data['_token']);
+        $news_id = $data['news_id'];
+        unset($data['news_id']);
+        $language = $data['language'];
+        unset($data['language']);
+        $lang_id = $data['lang_id'];
+        unset($data['lang_id']);
+        $cat_id = $data['cat_id'];
+        unset($data['cat_id']);
+        $news_title = $data['news_title'];
+        unset($data['news_title']);
+        $news_description = $data['news_description'];
+        unset($data['news_description']);
+        $city = $data['city'];
+        unset($data['city']);
+        $ref_url = $data['ref_url'];
+        unset($data['ref_url']);
+        $country = $data['country'];
+        unset($data['country']);
+        $news_video_url = $data['news_video_url'];
+        unset($data['news_video_url']);
+        unset($data['counter']);
+        $category_name = $data['category_name'];
+        unset($data['category_name']);
+//        dd($data);
+
+        $insertArray = [
+            'cat_id'=>$cat_id,
+            'lang_id'=>$lang_id,
+            'news_title'=>$news_title,
+            'language'=>$language,
+            'news_description'=>$news_description,
+            'city'=>$city,
+            'ref_url'=>$ref_url,
+            'country'=>$country,
+            'news_video_url'=>$news_video_url,
+            'created_at'=>Carbon::now()
+
+        ];
+        foreach ($data as $key_img =>$value_img){
+            $ext = $value_img->getClientOriginalExtension();
+//            dd($ext);
+            $ext_array = ['jpg','png','jpeg','gif'];
+            if(!in_array($ext, $ext_array)){
+                return ['code' => 101, 'message' => 'wrong file format please select correct file format.'];
+            }
+        }
+
+        $insert = News::where('id',$news_id)->update($insertArray);
+        foreach ($data as $key_img =>$value_img){
+            $random = str_random(5);
+            $ext = $value_img->getClientOriginalExtension();
+            $ext_array = ['jpg','png','jpeg','gif'];
+            if(!in_array($ext, $ext_array)){
+                return ['code' => 101, 'message' => 'wrong file format please select correct file format.'];
+            }
+            $path= Storage::putFileAs('news_Image', $value_img, time().$cat_id.$random.".".$ext);
+            $temp_data = [
+                'news_id' =>$news_id,
+                'news_image' =>$path,
+                'created_at'=>Carbon::now()
+            ];
+
+            $insert_img = NewsImage::insert($temp_data);
+        }
+        return ['code' => 101, 'message' => 'News update Successfully'];
 
     }
 }

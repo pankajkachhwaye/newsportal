@@ -80,6 +80,45 @@
 
     });
 
+    $(document).on('click','.delete-image',function(){
+        var that = $(this);
+        var countImage = that.closest('.remove-me').attr('data-count');
+        var id = $(this).attr('data-reactId');
+        $.ajax({
+            type: "GET",
+            url: APP_URL + '/delete-news-image/' + id,
+            dataType: 'json',
+            data: id,
+
+            success: function(response) {
+             if(response.status){
+                 var counter = that.closest('.remove-me').attr('data-count',--countImage);
+                 if(countImage == 0){
+                     $('#news_Image').attr('required',true);
+                 }
+                that.closest('.remove-me').remove();
+                 $.notify({
+                         message: response.message
+                     },
+                     {
+                         allow_dismiss: true,
+                         newest_on_top: true,
+                         timer: 1000,
+                         placement:{
+                             from: 'top',
+                             align: 'right'
+                         },
+                         animate: {
+                             enter: 'animated rotateOutInRight',
+                             exit: 'animated rotateOutUpRight '
+                         }
+                     });
+             }
+            }
+
+        });
+    });
+
     $(document).on('change','#basic_checkbox_select_all',function () {
         var selectallVal = $(this).prop('checked');
         if(selectallVal == true){

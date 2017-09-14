@@ -8052,3 +8052,6 @@ html.ie11 .bs-searchbox .form-control {
 [type="checkbox"]#basic_checkbox_select_all:checked + label:before{
   top: 14px;
 }
+.custom-badge:hover{
+  cursor: pointer;
+}

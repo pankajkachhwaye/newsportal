@@ -79,8 +79,8 @@
                                                         </td>
 
                                                         <td>
-                                                            <a href="#"><button type="submit" id="editdelivery" class="btn btn-primary m-t-15 waves-effect">Edit</button></a>
-                                                            <button type="submit" class="btn btn-info m-t-15 waves-effect">Delete</button>
+                                                            <a href="{{ url('/edit-language').'/'. $value_laguauge['id'] }}" ><button type="submit" id="editdelivery" class="btn btn-primary m-t-15 waves-effect">Edit</button></a>
+                                                            <a href="{{ url('/delete-language').'/'. $value_laguauge['id'] }}" onclick="return confirm('Are you sure you want to delete this item?');">  <button type="submit" class="btn btn-info m-t-15 waves-effect">Delete</button></a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

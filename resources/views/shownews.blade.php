@@ -47,7 +47,7 @@
                                         <td>{{ $value_news['news_title'] }}</td>
                                         <td>{{ $value_news['like'] }}</td>
 
-                                        <td><a href="#"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
+                                        <td><a href="{{url('edit-news').'/'.$value_news['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
                                         <td><a href="{{url('delete-news').'/'.$value_news['id']}}" onclick="return confirm('Are you sure you want to delete this item?');"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
                                     </tr>
 

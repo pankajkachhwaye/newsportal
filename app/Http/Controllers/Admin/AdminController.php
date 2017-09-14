@@ -7,6 +7,7 @@ use App\Models\AppUser;
 use App\Models\DeviceInfo;
 use App\Models\Language;
 use App\Models\News;
+use App\Models\NewsImage;
 use App\Notifications\GenralNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,6 +38,31 @@ class AdminController extends Controller
         else{
             return back()->with('returnStatus', true)->with('status', 101)->with('message', $save['message']);
         }
+    }
+
+    public function editLanguageForm($lang_id){
+        $page = 'language';
+        $laguage = Language::find($lang_id);
+        return view('admin.editlanguage',compact('laguage','page'));
+    }
+
+    public function deleteLanguage($lang_id){
+        $lang = Language::find($lang_id);
+        $lang->delete();
+        return back()->with('returnStatus', true)->with('status', 101)->with('message','Language deleted successfully');
+    }
+
+    public function updateLanguage(Request $request,CrudRepository $repo){
+        $update = $repo->updateModelById($request->all(),new Language());
+        if($update['code'] == 101){
+            $locations = Language::all()->toArray();
+
+            return redirect('/add-language')->with('returnStatus', true)->with('status', 101)->with('message', 'Language update successfully')->with($locations);
+        }
+        else{
+            return back()->with('returnStatus', true)->with('status', 101)->with('message', $update['message']);
+        }
+
     }
 
     public function addNewsForm(){
@@ -72,6 +98,17 @@ class AdminController extends Controller
         }
     }
 
+    public function updateNews(Request $request, CrudRepository $repo){
+        $save =$repo->updateNews($request->all());
+        if($save['code'] == 101){
+            return back()->with('returnStatus', true)->with('status', 101)->with('message', $save['message']);
+        }
+        else{
+            return back()->with('returnStatus', true)->with('status', 101)->with('message', $save['message']);
+        }
+
+    }
+
     public function showNews(){
         $page = 'news';
         $sub_page = 'news-show';
@@ -89,11 +126,32 @@ class AdminController extends Controller
 
     }
 
+    public function editNews($news_id){
+        $page = 'news';
+        $sub_page = 'news-show';
+
+        $news = News::find($news_id);
+        $category = $news->category;
+        $news->category_name = $category->category_name;
+        $newsImage = $news->newsImage;
+
+        return view('admin.editnews',compact('newsImage','news','page','sub_page'));
+
+    }
+
     public function deleteNews($id){
         $news = News::find($id);
         $news->delete();
         return back()->with('returnStatus', true)->with('status', 101)->with('message','News deleted successfully');
     }
+
+    public function deleteNewsImage($id){
+        $newsImg = NewsImage::find($id);
+        $newsImg->delete();
+        return Response::json(['code' => 200, 'status' => true, 'message' => 'Image deleted successfully']);
+    }
+
+
 
     public function sendNotificationAllUser(){
         $page = 'notification';
@@ -102,7 +160,7 @@ class AdminController extends Controller
     }
 
     public function notifAllUsers(Request $request){
-        $device_token = 'asdadd';
+
         $devices = DeviceInfo::all();
 
         foreach ($devices as $key_device => $value_device){
@@ -132,7 +190,7 @@ class AdminController extends Controller
     public function sendNotificationRegisteredUser(){
 
         $page = 'notification';
-        $sub_page = 'notify-registerd-users';
+        $sub_page = 'notify-registered-users';
         $app_users = AppUser::all();
 //        dd($app_users);
         return view('admin.notifyregisterd',compact('page','sub_page','app_users'));

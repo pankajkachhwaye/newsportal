@@ -29,7 +29,7 @@
                                 <tr>
                                     <th>S No.</th>
                                     <th>Language</th>
-                                    <th>Categories Name</th>
+                                    <th>Category Name</th>
                                     <th>Image</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -43,7 +43,7 @@
                                         <td>{{ $categorie['category_name'] }}</td>
                                         <td><img src={{asset('storage/'.$categorie['category_icon']) }} alt="Categories_Image" height="100px" width="100px"> </td>
                                         <td><a href="{{url('Categories/edit').'/'.$categorie['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Edit</button></a></td>
-                                        <td><a href="{{url('Categories/delete').'/'.$categorie['id']}}"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
+                                        <td><a href="{{url('Categories/delete').'/'.$categorie['id']}}" onclick="return confirm('Are you sure you want to delete this item?');"> <button type="submit" class="btn btn-primary m-t-15 waves-effect">Delete</button></a></td>
 
                                     </tr>
 
