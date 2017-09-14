@@ -23,6 +23,7 @@ Route::group(['namespace'=>'APIs','middleware' => 'jwt.auth'], function () {
     Route::get('user', 'UserController@getAuthUser');
     Route::post('like-news', 'UserController@likeNews');
     Route::post('add-remove-favourite-news', 'UserController@addToFavouriteNews');
+    Route::post('logout', 'UserController@logout');
 
     Route::post('/get-favourite-news','UserController@getFavouriteNews');
 });
@@ -45,6 +46,8 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
     Route::get('/get-all-notifications-form','ApiPanelController@showGetAllNotificationsForm');
     Route::get('/forgot-password-form','ApiPanelController@showForgoFasswordForm');
     Route::get('/all-languages-form','ApiPanelController@showAllLanguagesForm');
+    Route::get('/search-news-form','ApiPanelController@showSearchNewsForm');
+    Route::get('/logout-form','ApiPanelController@showLogoutForm');
 
 
 });
@@ -60,6 +63,7 @@ Route::group(['namespace'=>'APIs'],function(){
     Route::post('/categories-by-language','WebServicesController@categoryByLanguage');
     Route::post('/news','WebServicesController@getNews');
     Route::post('/related-news','WebServicesController@relatedNews');
+    Route::post('/search-news','WebServicesController@searchNews');
 
 
     Route::get('/categories','WebServicesController@categories');

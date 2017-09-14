@@ -27,8 +27,16 @@ class News extends Model
     public function scopeGetNewsByLike($query,$language){
         return $query->where('lang_id',$language);
     }
+
+    public function scopeGetSearchedNews($query,$value){
+        return $query->where('news_title','like','%'.$value.'%')->orwhere('news_description','like','%'.$value.'%');
+    }
+
+//    public function scopeGetSearchNewsByDiscription($query,$value){
+//        return $query;
+//    }
 //    public function scopeGetRelatedNews($query,$language){
-//        return $query->where('lang_id',$language);
+//        return $query->where('lang_id',$language); where('news_title','like','%'.$value.'%')->
 //    }
 
 }

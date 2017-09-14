@@ -339,5 +339,10 @@ class UserController extends Controller
 
     }
 
+    public function logout(Request $request){
+        JWTAuth::invalidate($request->token);
+        return Response::json(['code' => 200, 'status' => true,'message' => 'User logout successfully','data' =>array()]);
+    }
+
 
 }

@@ -35,7 +35,7 @@
 
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" name="language" value="{{$news->language}}" id="lang"
+                                                <input type="text" readonly name="language" value="{{$news->language}}" id="lang"
                                                        class="form-control" required>
                                                 <input type="hidden" value="{{$news->lang_id}}" name="lang_id"
                                                        id="lang_id">
@@ -52,7 +52,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <input required type="text" value="{{$news->category_name}}"
-                                                       name="category_name" id="companyName" class="form-control">
+                                                       name="category_name" id="companyName" readonly class="form-control">
                                                 <input type="hidden" value="{{$news->cat_id}}" name="cat_id"
                                                        id="cat_id">
                                             </div>

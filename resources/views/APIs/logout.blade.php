@@ -11,16 +11,16 @@
     URL::   {{url('/').'/api/get-favourite-news'}}
 
 </h1>
-<form  method="post"  action=" {{url('/api/get-favourite-news')}}" >
+<form  method="post"  action=" {{url('/api/logout')}}" >
 
     <br>
-    Token(token) ::*<input type="text" required  name="email" >
+  Token(token) ::*<input type="text" required  name="token" >
 
 
     <br>
     <br>
 
-  <button type="submit">Submit</button>
+    <button type="submit">Submit</button>
 
 
 

@@ -90,5 +90,13 @@ class ApiPanelController extends Controller
         return view('APIs.alllanguaugeform' );
     }
 
+    public function showSearchNewsForm(){
+        return view('APIs.searchform' );
+    }
+
+    public function showLogoutForm(){
+        return view('APIs.logout' );
+    }
+
 }
 

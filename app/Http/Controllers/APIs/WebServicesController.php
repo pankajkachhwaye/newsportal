@@ -111,10 +111,10 @@ class WebServicesController extends Controller
 
         }
         if ($request->top_news != 0 && $request->recommended_news == 0 && $request->cat_id == '') {
-            $temp_news = News::GetNewsByCreatedAt($request->language)->orderBy('created_at', 'desc')->take(3)->get();
+            $temp_news = News::GetNewsByCreatedAt($request->language)->orderBy('created_at', 'desc')->take(10)->get();
         }
         if ($request->top_news == 0 && $request->recommended_news != 0 && $request->cat_id == '') {
-            $temp_news = News::GetNewsByLike($request->language)->orderBy('like', 'desc')->take(2)->get();
+            $temp_news = News::GetNewsByLike($request->language)->orderBy('like', 'desc')->take(10)->get();
         }
 
         if ($temp_news->count() > 0) {
@@ -150,6 +150,39 @@ class WebServicesController extends Controller
 
     }
 
+    public function searchNews(Request $request){
+        $temp_news = News::GetSearchedNews($request->value)->orderBy('created_at', 'desc')->take(10)->get();
+        if ($temp_news->count() > 0) {
+            $news = [];
+            foreach ($temp_news as $key_news => $value_news) {
+                $x = $value_news->toArray();
+                $created = new \Carbon\Carbon($value_news->created_at);
+                $x['created'] = $created->diffForHumans();
+
+
+                $newsimages = $value_news->newsImage()->get()->toArray();
+//                        dd($newsimages);
+                if (count($newsimages) > 0) {
+                    $x['image'] = asset('storage/' . $newsimages[0]['news_image']);
+                } else {
+                    $x['image'] = '';
+
+
+                }
+
+                $x['newsImage'] = [];
+                foreach ($newsimages as $key_img => $value_img) {
+                    array_push($x['newsImage'], asset('storage/' . $value_img['news_image']));
+                }
+
+                array_push($news, $x);
+
+            }
+            return Response::json(['code' => 200, 'status' => true, 'message' => 'Data Found.', 'data' => $news]);
+        } else {
+            return Response::json(['code' => 500, 'status' => false, 'message' => 'No News is found write now.', 'data' => array()]);
+        }
+    }
 
     /**
      * @param Request $request
