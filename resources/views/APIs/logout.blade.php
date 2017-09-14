@@ -8,13 +8,13 @@
 
 <body>
 <h1>
-    URL::   {{url('/').'/api/get-favourite-news'}}
+    URL::   {{url('/').'/api/logout'}}
 
 </h1>
 <form  method="post"  action=" {{url('/api/logout')}}" >
 
     <br>
-  Token(token) ::*<input type="text" required  name="token" >
+  Token(token) ::*<input type="text" required  name="token">
 
 
     <br>
