@@ -9,9 +9,12 @@
         rules: {
             category_name: { valueNotEquals: "default" },
 
+//		news_description:{valueNotEquals: ""}
         },
         messages: {
-            category_name: { valueNotEquals: "Please select an item!" }
+            category_name: { valueNotEquals: "Please select an item!" },
+// news_description: { valueNotEquals: "Please add discription" }
+
 
         },highlight: function (input) {
 
@@ -19,6 +22,9 @@
         },
         unhighlight: function (input) {
             $(input).parents('.form-line').removeClass('error');
+        },
+	errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
         }
 
     });

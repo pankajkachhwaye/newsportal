@@ -67,13 +67,12 @@
 
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">News Description</label>
+                                        <label for="news_description">News Description</label>
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <textarea required type="text" name="news_description" id="companyName" class="form-control" >
-                                                </textarea>
+                                                <textarea required aria-required="true" type="text" name="news_description" id="news_description" class="form-control" ></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +98,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" name="ref_url" id="companyName" class="form-control" >
+                                                <input required type="text" name="ref_url" id="companyName" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +125,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="test" name="news_video_url" id=" profilePic" class="form-control" >
+                                                <input required type="test" name="news_video_url" id=" profilePic" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
