@@ -33,7 +33,11 @@
                                             </h2>
                                         </div>
                                         <div class="body">
+                                            <div class="row clearfix">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <button type="button" class="btn bg-red waves-effect" id="send-to-selected">Send Notification</button>
+                                            </div>
+                                            </div>
                                             <table class="table table-bordered table-striped table-hover notify-user dataTable">
                                                 <thead>
                                                 <tr>

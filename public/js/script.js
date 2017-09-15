@@ -118,46 +118,52 @@
 
         });
     });
-
+    Array.prototype.remove = function() {
+        var what, a = arguments, L = a.length, ax;
+        while (L && this.length) {
+            what = a[--L];
+            while ((ax = this.indexOf(what)) !== -1) {
+                this.splice(ax, 1);
+            }
+        }
+        return this;
+    };
+    var all_user = [];
     $(document).on('change','#basic_checkbox_select_all',function () {
         var selectallVal = $(this).prop('checked');
         if(selectallVal == true){
             var selectcheck = $('.select-me');
             selectcheck.each(function (index,value) {
                 $(this).prop('checked',true);
+                var id = $(this).attr('data-react-id');
+                all_user.push(id);
             })
         }
         else{
             var selectcheck = $('.select-me');
             selectcheck.each(function (index,value) {
                 $(this).prop('checked',false);
+                var id = $(this).attr('data-react-id');
+                all_user.remove(id);
             })
         }
     })
 
-    // $(document).on('change','.particular-me',function () {
-    //     var particularcheck = $(this).prop('checked');
-    //     if(selectallVal == true){
-    //             $(this).prop('checked',true);
-    //     }
-    //     else{
-    //             $(this).prop('checked',false);
-    //     }
-    // });
-    // $('#basic_checkbox_select_all').change()
+    $(document).on('change','.particular-me',function () {
+        var particularcheck = $(this).prop('checked');
+        if(particularcheck == true){
+            var id = $(this).attr('data-react-id');
+            all_user.push(id);
+        }
+        else{
+            var id = $(this).attr('data-react-id');
+            all_user.remove(id);
+        }
+    });
 
-    var all_user = [];
+
+
     $(document).on('click','#send-to-selected',function () {
-
-        $('.select-me').each(function (index,value) {
-            var checkprop = $(this).prop('checked')
-            if(checkprop == true){
-                var id = $(this).attr('data-react-id');
-                all_user.push(id);
-            }
-
-        })
-
 
         if(all_user.length > 0){
             $('#notify-selected-modal').modal('show');
