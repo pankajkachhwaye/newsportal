@@ -29,7 +29,7 @@
                                     <div class="card">
                                         <div class="header">
                                             <h2>
-                                                All user
+                                                All Users
                                             </h2>
                                         </div>
                                         <div class="body">
@@ -47,7 +47,7 @@
                                                     <th>Email</th>
                                                     <th>Mobile</th>
                                                     <th>
-                                                        <span>Select all</span>
+                                                        <span>Select All</span>
                                                         <input type="checkbox" id="basic_checkbox_select_all" class="filled-in selected-all" />
                                                         <label for="basic_checkbox_select_all"></label>
                                                     </th>
@@ -70,7 +70,7 @@
                                                         <td>
                                                             {{$value_user['mobile_no']}}
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <input type="checkbox" data-react-id="{{$value_user['id']}}" id="basic_checkbox_{{$key_user}}" class="filled-in select-me particular-me"  />
                                                             <label for="basic_checkbox_{{$key_user}}"></label>
                                                         </td>

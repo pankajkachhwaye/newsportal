@@ -101,7 +101,7 @@ class AdminController extends Controller
     public function updateNews(Request $request, CrudRepository $repo){
         $save =$repo->updateNews($request->all());
         if($save['code'] == 101){
-            return back()->with('returnStatus', true)->with('status', 101)->with('message', $save['message']);
+            return redirect('show-news')->with('returnStatus', true)->with('status', 101)->with('message', $save['message']);
         }
         else{
             return back()->with('returnStatus', true)->with('status', 101)->with('message', $save['message']);
@@ -115,7 +115,7 @@ class AdminController extends Controller
         $temp_news = News::all();
         $news = [];
         foreach ($temp_news as $key_news => $value_news){
-            $category = $value_news->category->first(['category_name']);
+            $category = $value_news->category;
             $x =$value_news->toArray();
             $x['category_name'] = $category->category_name;
             unset($x['category']);

@@ -49,8 +49,9 @@
 
 
 
-                                </tbody>
+
                                 @endforeach
+                                </tbody>
                                 {{--<tfoot>--}}
                                 {{--
                                 <tr>

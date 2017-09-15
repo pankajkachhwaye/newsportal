@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-xs-8 p-t-5">
                         <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                        <label for="rememberme" name="remember" {{ old('remember') ? 'checked' : ''}}>Remember Me</label>
+                        <label for="rememberme" name="rememberme" {{ old('remember') ? 'checked' : ''}}>Remember Me</label>
                     </div>
                     <div class="col-xs-4">
                         <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>

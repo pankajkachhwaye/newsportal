@@ -33,7 +33,7 @@
                                     <th>News</th>
                                     <th>Like</th>
                                     <th>Edit</th>
-                                    <th>delete</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>

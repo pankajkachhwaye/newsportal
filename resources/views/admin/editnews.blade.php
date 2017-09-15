@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Add News
+                                Edit News
                             </h2>
 
                         </div>
@@ -190,7 +190,7 @@
 
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Submit
+                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Update
                                         </button>
                                     </div>
                                 </div>

@@ -81,7 +81,9 @@
             date: false
         });
         $('.js-basic-example').DataTable({
-            responsive: true
+            responsive: true,
+//            "iDisplayLength": 5,
+            "aLengthMenu": [[1, 10, 50, 100, -1], [1, 10, 50, 100, "All"]]
         });
         $('.notify-user').dataTable( {
             responsive: true,

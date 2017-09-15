@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Send notification to all user
+                                Send notification to all users
                             </h2>
 
                         </div>
