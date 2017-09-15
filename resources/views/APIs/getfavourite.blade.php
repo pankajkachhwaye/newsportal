@@ -14,7 +14,7 @@
 <form  method="post"  action=" {{url('/api/get-favourite-news')}}" >
 
     <br>
-    Token(token) ::*<input type="text" required  name="email" >
+    Token(token) ::*<input type="text" required  name="token" >
 
 
     <br>

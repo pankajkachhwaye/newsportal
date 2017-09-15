@@ -44,6 +44,10 @@
     Recommnded News(recommended_news) ::*<input type="text"  name="recommended_news" >
     <br>
     <br>
+
+    User Id(user_id) ::*<input type="text"  name="user_id" >
+    <br>
+    <br>
     <button type="submit">Submit</button>
 
 
