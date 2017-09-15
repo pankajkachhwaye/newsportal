@@ -12,6 +12,7 @@ use App\Models\NewsImage;
 use App\Models\TimingModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use App\Models\DeviceInfo;
 class CrudRepository
 {
 
@@ -102,6 +103,13 @@ class CrudRepository
 
             $insert_img = NewsImage::insert($temp_data);
         }
+
+        $devices = DeviceInfo::all();
+        $title = 'NewsPortal';
+
+        foreach ($devices as $key_device => $value_device){
+            $notify =  $this->firebase_notification($value_device->device_token,$title, $news_title);
+        }
         return ['code' => 101, 'message' => 'News Added Successfully'];
 
     }
@@ -173,6 +181,52 @@ class CrudRepository
             $insert_img = NewsImage::insert($temp_data);
         }
         return ['code' => 101, 'message' => 'News update Successfully'];
+
+    }
+
+    public function firebase_notification($device_token,$title,$body){
+        $ch = curl_init("https://fcm.googleapis.com/fcm/send");
+
+        //The device token.
+        /*$token = "eA-RyGHUo38:APA91bE_Giwf5lGGH87syUFLy__NS8g_YYR8W2LWp9hvss_gnTlDCkrHZekz44pI_6LZU0G1dJ4JUO5bDm6J_U6TsOgQqd4MzsUN37EP-JKA2NdonXIvjCrAPNz3Ui6xwPPbt608jltI";*/
+        $token = $device_token;
+
+        //Title of the Notification.
+        $title = $title;
+
+        //Body of the Notification.
+        $body = $body;
+
+        //Creating the notification array.
+        $notification = array('title' =>$title , 'text' => $body);
+
+        //This array contains, the token and the notification. The 'to' attribute stores the token.
+        $arrayToSend = array('to' => $token, 'notification' => $notification);
+        //Generating JSON encoded string form the above array.
+        $json = json_encode($arrayToSend);
+
+        //Setup headers:
+        $headers = array();
+        $headers[] = 'Content-Type: application/json';
+
+        //behindbar
+        //$headers[] = 'Authorization: key= AAAANYa3Tpo:APA91bFFgq6p2EqPi2OPhNFYdHChomOILYJr4mqbPGQANq5w6axeEZwojxfkL0Iyknsvte825OgjfhyJ7dnIMVOzS7uRMqE502y0amwipgpw6GM5yeQAilUUgiCASrvkYpc8vwNj9EQk'; //server key here
+
+
+        //poochplay
+        $headers[] = 'Authorization: key= AAAA1IfBAQ0:APA91bFX9FPXGiNOL_Cz1rVXTYE5XoH6W2tGh34ckHR20obSTxC817IJ-8ByCblisB2NYGmV12CZb1ACMA55n_i2Yh-phZEV7VZuj513uYhd8rU_Tv170v2HedpB97G41K9ZPEafTVO8'; //server key here
+
+        //Setup curl, add headers and post parameters.
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
+
+        //Send the request
+        $response = curl_exec($ch);
+
+        //Close request
+        curl_close($ch);
+        return $response;
 
     }
 }

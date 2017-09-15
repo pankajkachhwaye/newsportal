@@ -182,7 +182,7 @@
                     },
                     animate: {
                         enter: 'animated rotateOutInRight',
-                        exit: 'animated rotateOutUpRight '
+                        exit: 'animated rotateOutUpRight'
                     }
                 });
         }
