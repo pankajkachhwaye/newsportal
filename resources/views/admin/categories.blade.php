@@ -23,17 +23,17 @@
 
                         </div>
                         <div class="body">
-                            <form method="POST" enctype="multipart/form-data"  id="add_attribute" action="{{ url('/Categories/store')  }}">
+                            <form id="add_attribute"  method="POST" enctype="multipart/form-data"  action="{{ url('/Categories/store')  }}">
                                 {{csrf_field()}}
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="email_address_2">Language</label>
+                                        <label for="categor_product">Language</label>
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" id="categor_product" required name="language_id">
-                                                    <option value="default">Please Select Language</option>
+                                                    <option value="">Please Select Language</option>
                                                     @foreach($laguages as $laguagekey => $valuelaguage)
                                                         <option value="{{$valuelaguage['id']}}">{{$valuelaguage['language_name']}}</option>
                                                     @endforeach
@@ -50,7 +50,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" name="category_name" id="companyName" class="form-control" >
+                                                <input required type="text" name="category_name" id="companyName" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +63,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="file" name="category_icon" id=" profilePic" class="form-control" >
+                                                <input required type="file" name="category_icon" id=" profilePic" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
