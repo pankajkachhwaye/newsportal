@@ -183,7 +183,24 @@ class WebServicesController extends Controller
 
     public function searchNews(Request $request){
         $temp_news = News::GetSearchedNews($request->value)->orderBy('created_at', 'desc')->take(10)->get();
+        $fav_array = [];
         if ($temp_news->count() > 0) {
+            if($request->user_id != 0){
+                $user = AppUser::find($request->user_id);
+                $user_favourite = $user->userFavourite()->get();
+                if($user_favourite->count() > 0){
+                    $fav = true;
+                    foreach ($user_favourite as $key_fav => $value_fav){
+                        array_push($fav_array ,$value_fav->news_id);
+                    }
+                }
+                else{
+                    $fav = false;
+                }
+            }
+            else{
+                $fav = false;
+            }
             $news = [];
             foreach ($temp_news as $key_news => $value_news) {
                 $x = $value_news->toArray();
@@ -206,6 +223,18 @@ class WebServicesController extends Controller
                     array_push($x['newsImage'], asset('storage/' . $value_img['news_image']));
                 }
 
+                if($fav){
+                    if(in_array($value_news->id,$fav_array)){
+                        $x['favourite'] = true;
+                    }
+                    else{
+                        $x['favourite'] = false;
+                    }
+                }
+                else{
+                    $x['favourite'] = false;
+                }
+
                 array_push($news, $x);
 
             }
@@ -223,8 +252,24 @@ class WebServicesController extends Controller
     {
 
         $temp_news = News::GetNewsByCreatedAt($request->language_id)->GetNewsByCat($request->cat_id)->orderBy('created_at', 'desc')->take(3)->get();
-
+        $fav_array = [];
         if ($temp_news->count() > 0) {
+            if($request->user_id != 0){
+                $user = AppUser::find($request->user_id);
+                $user_favourite = $user->userFavourite()->get();
+                if($user_favourite->count() > 0){
+                    $fav = true;
+                    foreach ($user_favourite as $key_fav => $value_fav){
+                        array_push($fav_array ,$value_fav->news_id);
+                    }
+                }
+                else{
+                    $fav = false;
+                }
+            }
+            else{
+                $fav = false;
+            }
             $news = [];
             foreach ($temp_news as $key_news => $value_news) {
                 $x = $value_news->toArray();
@@ -241,6 +286,17 @@ class WebServicesController extends Controller
                     array_push($x['newsImage'], asset('storage/' . $value_img['news_image']));
                 }
 
+                if($fav){
+                    if(in_array($value_news->id,$fav_array)){
+                        $x['favourite'] = true;
+                    }
+                    else{
+                        $x['favourite'] = false;
+                    }
+                }
+                else{
+                    $x['favourite'] = false;
+                }
                 array_push($news, $x);
 
             }

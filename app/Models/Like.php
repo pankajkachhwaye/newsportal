@@ -14,4 +14,9 @@ class Like extends Model
     public function scopeNewsLike($query,$news_id){
         return $query->where('news_id',$news_id);
     }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
 }

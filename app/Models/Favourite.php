@@ -14,4 +14,9 @@ class Favourite extends Model
     public function scopeNewsFavourite($query,$news_id){
         return $query->where('news_id',$news_id);
     }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
 }

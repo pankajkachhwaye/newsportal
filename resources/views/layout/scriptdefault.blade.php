@@ -83,7 +83,7 @@
         $('.js-basic-example').DataTable({
             responsive: true,
 //            "iDisplayLength": 5,
-            "aLengthMenu": [[1, 10, 50, 100, -1], [1, 10, 50, 100, "All"]]
+            "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
         });
         $('.notify-user').dataTable( {
             responsive: true,

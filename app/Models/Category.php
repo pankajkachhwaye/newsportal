@@ -19,4 +19,9 @@ class Category extends Model
   public function news(){
       return $this->hasMany('App\Models\News','cat_id');
   }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
 }

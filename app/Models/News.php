@@ -32,6 +32,11 @@ class News extends Model
         return $query->where('news_title','like','%'.$value.'%')->orwhere('news_description','like','%'.$value.'%');
     }
 
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
 //    public function scopeGetSearchNewsByDiscription($query,$value){
 //        return $query;
 //    }

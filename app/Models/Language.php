@@ -15,4 +15,9 @@ class Language extends Model
     public function category(){
         return $this->hasMany('App\Models\Category','language_id');
     }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return ($value == null ? '':$value);
+    }
 }
