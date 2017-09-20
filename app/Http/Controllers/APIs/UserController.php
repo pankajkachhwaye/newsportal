@@ -281,7 +281,7 @@ class UserController extends Controller
                     foreach ($newsimages as $key_img => $value_img){
                         array_push($x['newsImage'],  asset('storage/'.$value_img['news_image']));
                     }
-
+                    $x['favourite'] = true;
                     array_push($news,$x);
 
                 }
@@ -325,7 +325,7 @@ class UserController extends Controller
                         array_push($temp_notification,$value_notify['data']);
                     }
 
-                    return Response::json(['code' => 200, 'status' => true,'message' => 'News found in favourite list','data' =>$temp_notification]);
+                    return Response::json(['code' => 200, 'status' => true,'message' => 'notification found','data' =>$temp_notification]);
                 }
                 else{
                     return Response::json(['code' => 200, 'status' => false,'message' => 'No notification found','data' =>array()]);

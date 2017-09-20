@@ -98,5 +98,8 @@ class ApiPanelController extends Controller
         return view('APIs.logout' );
     }
 
+//    public function showGetAllNotificationsDeviceForm(){
+//        return view('APIs.getnotificationdevice');
+//    }
 }
 

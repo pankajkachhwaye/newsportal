@@ -43,7 +43,7 @@ Route::group(['prefix'=>'Allapi', 'namespace'=>'APIs'],function(){
     Route::get('/like-news-form','ApiPanelController@showLikeNewsForm');
     Route::get('/add-favourite-news-form','ApiPanelController@showAddFavrouiteNewsForm');
     Route::get('/get-favourite-news-form','ApiPanelController@showGetFavrouiteNewsForm');
-    Route::get('/get-all-notifications-form','ApiPanelController@showGetAllNotificationsForm');
+    Route::get('/get-all-notifications-device-form','ApiPanelController@showGetAllNotificationsDeviceForm');
     Route::get('/forgot-password-form','ApiPanelController@showForgoFasswordForm');
     Route::get('/all-languages-form','ApiPanelController@showAllLanguagesForm');
     Route::get('/search-news-form','ApiPanelController@showSearchNewsForm');
@@ -70,6 +70,7 @@ Route::group(['namespace'=>'APIs'],function(){
     Route::post('/subcategories','WebServicesController@subcategories');
     Route::post('/forgot-password','WebServicesController@forgotPassword');
     Route::post('get-all-notifications', 'UserController@getAllNotifications');
+
 
 
 });

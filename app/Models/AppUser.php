@@ -49,6 +49,11 @@ class AppUser extends Model
        return $this->hasMany('App\Models\Favourite','user_id');
     }
 
+    public function userLike(){
+        return $this->hasMany('App\Models\Like','user_id');
+    }
+
+
     public function deviceInfo(){
         return $this->hasOne('App\Models\DeviceInfo','app_user_id');
     }

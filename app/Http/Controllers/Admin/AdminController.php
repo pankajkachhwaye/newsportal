@@ -227,7 +227,7 @@ class AdminController extends Controller
 
 
         //poochplay
-        $headers[] = 'Authorization: key= AAAA1IfBAQ0:APA91bFX9FPXGiNOL_Cz1rVXTYE5XoH6W2tGh34ckHR20obSTxC817IJ-8ByCblisB2NYGmV12CZb1ACMA55n_i2Yh-phZEV7VZuj513uYhd8rU_Tv170v2HedpB97G41K9ZPEafTVO8'; //server key here
+        $headers[] = 'Authorization: key= AAAA1IfBAQ0:APA91bFIw8AKJ7yyuzWYZ-IG6nFGCKJ9EeTcsoinhizMWOOV_Aoh8MASAk2TZDMVUxMIrwq0ZP8AgAVf4mV8DubZsh8piKTuhq9UqMBDMxLW_K-uq2m18sFzIQCLiAStZnl7mYv8Dnqs'; //server key here
 
         //Setup curl, add headers and post parameters.
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");

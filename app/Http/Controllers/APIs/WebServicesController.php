@@ -117,6 +117,7 @@ class WebServicesController extends Controller
             $temp_news = News::GetNewsByLike($request->language)->orderBy('like', 'desc')->take(10)->get();
         }
         $fav_array = [];
+        $like_array = [];
         if ($temp_news->count() > 0) {
             if($request->user_id != 0){
                 $user = AppUser::find($request->user_id);
@@ -130,9 +131,21 @@ class WebServicesController extends Controller
                 else{
                     $fav = false;
                 }
+                $user_like = $user->userLike()->get();
+                if($user_like->count() > 0){
+                    $like = true;
+                    foreach ($user_like as $key_lik => $value_lik){
+                        array_push($like_array ,$value_lik->news_id);
+                    }
+                }
+                else{
+                    $like = false;
+                }
+
             }
             else{
                 $fav = false;
+                $like = false;
             }
             $news = [];
 
@@ -168,6 +181,18 @@ class WebServicesController extends Controller
                 }
                 else{
                     $x['favourite'] = false;
+                }
+
+                if($like){
+                    if(in_array($value_news->id,$like_array)){
+                        $x['liked'] = true;
+                    }
+                    else{
+                        $x['liked'] = false;
+                    }
+                }
+                else{
+                    $x['liked'] = false;
                 }
 
 
@@ -184,6 +209,7 @@ class WebServicesController extends Controller
     public function searchNews(Request $request){
         $temp_news = News::GetSearchedNews($request->value)->orderBy('created_at', 'desc')->take(10)->get();
         $fav_array = [];
+        $like_array = [];
         if ($temp_news->count() > 0) {
             if($request->user_id != 0){
                 $user = AppUser::find($request->user_id);
@@ -197,9 +223,22 @@ class WebServicesController extends Controller
                 else{
                     $fav = false;
                 }
+
+                $user_like = $user->userLike()->get();
+                if($user_like->count() > 0){
+                    $like = true;
+                    foreach ($user_like as $key_lik => $value_lik){
+                        array_push($like_array ,$value_lik->news_id);
+                    }
+                }
+                else{
+                    $like = false;
+                }
+
             }
             else{
                 $fav = false;
+                $like = false;
             }
             $news = [];
             foreach ($temp_news as $key_news => $value_news) {
@@ -233,6 +272,18 @@ class WebServicesController extends Controller
                 }
                 else{
                     $x['favourite'] = false;
+                }
+
+                if($like){
+                    if(in_array($value_news->id,$like_array)){
+                        $x['liked'] = true;
+                    }
+                    else{
+                        $x['liked'] = false;
+                    }
+                }
+                else{
+                    $x['liked'] = false;
                 }
 
                 array_push($news, $x);
@@ -253,6 +304,7 @@ class WebServicesController extends Controller
 
         $temp_news = News::GetNewsByCreatedAt($request->language_id)->GetNewsByCat($request->cat_id)->orderBy('created_at', 'desc')->take(3)->get();
         $fav_array = [];
+        $like_array = [];
         if ($temp_news->count() > 0) {
             if($request->user_id != 0){
                 $user = AppUser::find($request->user_id);
@@ -266,9 +318,21 @@ class WebServicesController extends Controller
                 else{
                     $fav = false;
                 }
+
+                $user_like = $user->userLike()->get();
+                if($user_like->count() > 0){
+                    $like = true;
+                    foreach ($user_like as $key_lik => $value_lik){
+                        array_push($like_array ,$value_lik->news_id);
+                    }
+                }
+                else{
+                    $like = false;
+                }
             }
             else{
                 $fav = false;
+                $like = false;
             }
             $news = [];
             foreach ($temp_news as $key_news => $value_news) {
@@ -296,6 +360,18 @@ class WebServicesController extends Controller
                 }
                 else{
                     $x['favourite'] = false;
+                }
+
+                if($like){
+                    if(in_array($value_news->id,$like_array)){
+                        $x['liked'] = true;
+                    }
+                    else{
+                        $x['liked'] = false;
+                    }
+                }
+                else{
+                    $x['liked'] = false;
                 }
                 array_push($news, $x);
 
@@ -333,6 +409,9 @@ class WebServicesController extends Controller
         }
     }
 
+    public function getAllNotificationsDevice(){
+
+    }
 
     function send_opt_mobile($mobile, $password)
     {
